@@ -1,0 +1,545 @@
+
+  "ids": {
+    "modelId": "lumi.curtain.acn002",
+    "manufacturerName": "LUMI"
+  },
+  "endpoints": {
+    "endpointDescriptors": [
+      {
+        "endpointId": 1,
+        "applicationProfileId": 260,
+        "applicationDeviceId": 256,
+        "applicationDeviceVersion": 0,
+        "_reserved1": 1,
+        "inputClusters": [
+          0,
+          2,
+          3,
+          4,
+          5,
+          6,
+          9,
+          13,
+          19,
+          258
+        ],
+        "outputClusters": [
+          10,
+          25
+        ]
+      },
+      {
+        "endpointId": 242,
+        "applicationProfileId": 41440,
+        "applicationDeviceId": 97,
+        "applicationDeviceVersion": 0,
+        "_reserved1": 0,
+        "inputClusters": [],
+        "outputClusters": [
+          33
+        ]
+      }
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": {
+          "basic": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 0,
+                "name": "zclVersion",
+                "value": 3
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 1,
+                "name": "appVersion",
+                "value": 22
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 2,
+                "name": "stackVersion",
+                "value": 2
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 3,
+                "name": "hwVersion",
+                "value": 1
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 4,
+                "name": "manufacturerName",
+                "value": "LUMI"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 5,
+                "name": "modelId",
+                "value": "lumi.curtain.acn002"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 6,
+                "name": "dateCode"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 7,
+                "name": "powerSource",
+                "value": "unknown"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 13
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [],
+            "commandsReceived": [
+              "factoryReset"
+            ]
+          },
+          "deviceTemperature": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 0,
+                "name": "currentTemperature",
+                "value": 30
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 16,
+                "name": "deviceTempAlarmMask",
+                "value": {
+                  "type": "Buffer",
+                  "data": [
+                    2
+                  ]
+                }
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 18,
+                "name": "highTempThreshold",
+                "value": 65
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 20,
+                "name": "highTempDwellTripPoint",
+                "value": 3
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [],
+            "commandsReceived": []
+          },
+          "identify": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 0
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [
+              0
+            ],
+            "commandsReceived": [
+              0,
+              1
+            ]
+          },
+          "groups": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 0,
+                "name": "nameSupport",
+                "value": {
+                  "type": "Buffer",
+                  "data": [
+                    128
+                  ]
+                }
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [
+              "addGroup.response",
+              "viewGroup.response",
+              "getGroupMembership.response",
+              "removeGroup.response"
+            ],
+            "commandsReceived": [
+              "addGroup",
+              "viewGroup",
+              "getGroupMembership",
+              "removeGroup",
+              "removeAllGroups",
+              "addGroupIfIdentify"
+            ]
+          },
+          "scenes": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 0
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 1
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 2
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 3
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 4
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 5
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              6,
+              64,
+              65,
+              66
+            ],
+            "commandsReceived": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              64,
+              65,
+              66
+            ]
+          },
+          "onOff": {},
+          "alarms": {},
+          "analogOutput": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 65,
+                "name": "maxPresentValue",
+                "value": 0
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 81,
+                "name": "outOfService",
+                "value": false
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable",
+                  "reportable"
+                ],
+                "id": 85,
+                "name": "presentValue",
+                "value": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "acl": [
+                  "readable",
+                  "reportable"
+                ],
+                "id": 111,
+                "name": "statusFlags",
+                "value": {
+                  "type": "Buffer",
+                  "data": [
+                    0
+                  ]
+                },
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable",
+                  "reportable"
+                ],
+                "id": 61441,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [],
+            "commandsReceived": []
+          },
+          "multistateOutput": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 74,
+                "name": "numberOfStates",
+                "value": 6
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 81,
+                "name": "outOfService",
+                "value": false
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable",
+                  "reportable"
+                ],
+                "id": 85,
+                "name": "presentValue",
+                "value": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "acl": [
+                  "readable",
+                  "reportable"
+                ],
+                "id": 111,
+                "name": "statusFlags",
+                "value": {
+                  "type": "Buffer",
+                  "data": [
+                    0
+                  ]
+                },
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [],
+            "commandsReceived": []
+          },
+          "windowCovering": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 0,
+                "name": "windowCoveringType",
+                "value": "drapery"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 7,
+                "name": "configStatus",
+                "value": {
+                  "type": "Buffer",
+                  "data": [
+                    43
+                  ]
+                }
+              },
+              {
+                "acl": [
+                  "readable",
+                  "reportable"
+                ],
+                "id": 8,
+                "name": "currentPositionLiftPercentage",
+                "value": 0,
+                "reportingConfiguration": {
+                  "direction": "reported",
+                  "attributeDataType": 32,
+                  "minInterval": 1,
+                  "maxInterval": 65535,
+                  "minChange": 3,
+                  "status": "SUCCESS"
+                }
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 16
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 17
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 23
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [],
+            "commandsReceived": []
+          }
+        },
+        "bindings": {
+          "time": {},
+          "ota": {}
+        }
+      },
+      "242": {
+        "clusters": {},
+        "bindings": {}
+      }
+    }
+  }

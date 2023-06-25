@@ -1,0 +1,41 @@
+{
+	"name": "com.xiaomi-mi-zigbee",
+	"version": "1.1.0",
+	"description": "This app allows you to connect your Xiaomi-mi Zigbee Devices directly to Homey",
+	"main": "app.js",
+	"dependencies": {
+		"git-branch": "^1.0.0",
+		"homey-log-to-file": "github:robertklep/homey-log-to-file",
+		"homey-zigbeedriver": "^1.6.10",
+		"homey-zwavedriver": "^1.0.4",
+		"zigbee-clusters": "^1.4.1"
+	},
+	"devDependencies": {
+		"eslint": "^6.8.0",
+		"eslint-config-athom": "^2.1.0"
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"start": "nodemon --watch . --exec \"homey app run\"",
+		"buildTable": "node -e \"require('./docs/supportedDevices').parseManifest()\" > docs/supportedDevices.md"
+	},
+	"nodemonConfig": {
+		"ignore": [
+			"app.json",
+			"build/"
+		]
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/TedTolboom/com.xiaomi-mi-zigbee.git"
+	},
+	"engines": {
+		"node": ">=12.16.1"
+	},
+	"author": "Ted Tolboom",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/TedTolboom/com.xiaomi-mi-zigbee/issues"
+	},
+	"homepage": "https://github.com/TedTolboom/com.xiaomi-mi-zigbee#readme"
+}

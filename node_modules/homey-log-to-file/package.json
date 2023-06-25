@@ -1,0 +1,11 @@
+{
+  "name": "homey-log-to-file",
+  "version": "1.0.0",
+  "description": "Capture stdout/stderr of Homey apps to a file",
+  "main": "index.js",
+  "author": "Robert Klep <robert@klep.name>",
+  "license": "MIT",
+  "dependencies": {
+    "hook-std": "^3.0.0"
+  }
+}

@@ -1,0 +1,67 @@
+[
+    "ids": {
+      "modelId": "lumi.curtain.agl001",
+      "manufacturerName": "LUMI"
+    },
+    "endpoints": {
+      "endpointDescriptors": [
+        {
+          "endpointId": 1,
+          "applicationProfileId": 260,
+          "applicationDeviceId": 263,
+          "applicationDeviceVersion": 0,
+          "_reserved1": 1,
+          "inputClusters": [
+            0,
+            1,
+            3,
+            64704,
+            258,
+            10
+          ],
+          "outputClusters": [
+            3,
+            25,
+            64704,
+            10
+          ]
+        }
+      ],
+      "endpoints": {
+        "1": {
+          "clusters": {
+            "basic": {
+              "attributes": "UNSUP_GENERAL_COMMAND",
+              "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+              "commandsReceived": "UNSUP_GENERAL_COMMAND"
+            },
+            "powerConfiguration": {
+              "attributes": "UNSUP_GENERAL_COMMAND",
+              "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+              "commandsReceived": "UNSUP_GENERAL_COMMAND"
+            },
+            "identify": {
+              "attributes": "UNSUP_GENERAL_COMMAND",
+              "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+              "commandsReceived": "UNSUP_GENERAL_COMMAND"
+            },
+            "windowCovering": {
+              "attributes": "UNSUP_GENERAL_COMMAND",
+              "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+              "commandsReceived": "UNSUP_GENERAL_COMMAND"
+            },
+            "time": {}
+          },
+          "bindings": {
+            "identify": {
+              "attributes": "UNSUP_GENERAL_COMMAND",
+              "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+              "commandsReceived": "UNSUP_GENERAL_COMMAND"
+            },
+            "time": {},
+            "ota": {}
+          }
+        }
+      }
+    }
+]

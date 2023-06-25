@@ -1,0 +1,482 @@
+
+  "ids": {
+    "modelId": "lumi.switch.l2aeu1",
+    "manufacturerName": "LUMI"
+  },
+  "endpoints": {
+    "endpointDescriptors": [
+      {
+        "endpointId": 1,
+        "applicationProfileId": 260,
+        "applicationDeviceId": 256,
+        "applicationDeviceVersion": 0,
+        "_reserved1": 1,
+        "inputClusters": [
+          0,
+          2,
+          3,
+          4,
+          5,
+          6,
+          18,
+          64704
+        ],
+        "outputClusters": [
+          10,
+          25
+        ]
+      },
+      {
+        "endpointId": 2,
+        "applicationProfileId": 260,
+        "applicationDeviceId": 256,
+        "applicationDeviceVersion": 0,
+        "_reserved1": 1,
+        "inputClusters": [
+          0,
+          3,
+          4,
+          5,
+          6,
+          18,
+          64704
+        ],
+        "outputClusters": []
+      },
+      {
+        "endpointId": 41,
+        "applicationProfileId": 260,
+        "applicationDeviceId": 256,
+        "applicationDeviceVersion": 0,
+        "_reserved1": 1,
+        "inputClusters": [
+          18
+        ],
+        "outputClusters": []
+      },
+      {
+        "endpointId": 42,
+        "applicationProfileId": 260,
+        "applicationDeviceId": 256,
+        "applicationDeviceVersion": 0,
+        "_reserved1": 1,
+        "inputClusters": [
+          18
+        ],
+        "outputClusters": []
+      },
+      {
+        "endpointId": 51,
+        "applicationProfileId": 260,
+        "applicationDeviceId": 256,
+        "applicationDeviceVersion": 0,
+        "_reserved1": 1,
+        "inputClusters": [
+          18
+        ],
+        "outputClusters": []
+      },
+      {
+        "endpointId": 242,
+        "applicationProfileId": 41440,
+        "applicationDeviceId": 97,
+        "applicationDeviceVersion": 0,
+        "_reserved1": 0,
+        "inputClusters": [],
+        "outputClusters": [
+          33
+        ]
+      }
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": {
+          "basic": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 0,
+                "name": "zclVersion"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 1,
+                "name": "appVersion"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 2,
+                "name": "stackVersion"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 3,
+                "name": "hwVersion"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 4,
+                "name": "manufacturerName"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 5,
+                "name": "modelId"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 6,
+                "name": "dateCode"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 7,
+                "name": "powerSource"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision"
+              }
+            ],
+            "commandsReceived": [
+              "factoryReset"
+            ]
+          },
+          "deviceTemperature": {},
+          "identify": {},
+          "groups": {},
+          "scenes": {},
+          "onOff": {},
+          "multistateInput": {}
+        },
+        "bindings": {
+          "time": {},
+          "ota": {}
+        }
+      },
+      "2": {
+        "clusters": {
+          "basic": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 0,
+                "name": "zclVersion",
+                "value": 3
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 1,
+                "name": "appVersion",
+                "value": 11
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 2,
+                "name": "stackVersion",
+                "value": 2
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 3,
+                "name": "hwVersion",
+                "value": 1
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 4,
+                "name": "manufacturerName",
+                "value": "LUMI"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 5,
+                "name": "modelId",
+                "value": "lumi.switch.l2aeu1"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 6,
+                "name": "dateCode"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 7,
+                "name": "powerSource",
+                "value": "mains"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [],
+            "commandsReceived": [
+              "factoryReset"
+            ]
+          },
+          "identify": {
+            "commandsGenerated": [
+              0
+            ],
+            "commandsReceived": [
+              0,
+              1
+            ]
+          },
+          "groups": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 0,
+                "name": "nameSupport"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision"
+              }
+            ],
+            "commandsGenerated": [
+              "addGroup.response",
+              "viewGroup.response",
+              "getGroupMembership.response",
+              "removeGroup.response"
+            ],
+            "commandsReceived": [
+              "addGroup",
+              "viewGroup",
+              "getGroupMembership",
+              "removeGroup",
+              "removeAllGroups",
+              "addGroupIfIdentify"
+            ]
+          },
+          "scenes": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 0
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 1
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 2
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 3
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 4
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 5
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsReceived": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              64,
+              65,
+              66
+            ]
+          },
+          "onOff": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable",
+                  "reportable"
+                ],
+                "id": 0,
+                "name": "onOff",
+                "value": false,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 16384
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsReceived": [
+              "setOff",
+              "setOn",
+              "toggle"
+            ]
+          },
+          "multistateInput": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 74,
+                "name": "numberOfStates",
+                "value": 6
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 81,
+                "name": "outOfService",
+                "value": false
+              },
+              {
+                "acl": [
+                  "readable",
+                  "reportable"
+                ],
+                "id": 85,
+                "name": "presentValue",
+                "value": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "acl": [
+                  "readable",
+                  "reportable"
+                ],
+                "id": 111,
+                "name": "statusFlags",
+                "value": {
+                  "type": "Buffer",
+                  "data": [
+                    0
+                  ]
+                },
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": []
+          }
+        },
+        "bindings": {}
+      },
+      "41": {
+        "clusters": {
+          "multistateInput": {}
+        },
+        "bindings": {}
+      },
+      "42": {
+        "clusters": {
+          "multistateInput": {}
+        },
+        "bindings": {}
+      },
+      "51": {
+        "clusters": {
+          "multistateInput": {}
+        },
+        "bindings": {}
+      },
+      "242": {
+        "clusters": {},
+        "bindings": {}
+      }
+    }
+  }

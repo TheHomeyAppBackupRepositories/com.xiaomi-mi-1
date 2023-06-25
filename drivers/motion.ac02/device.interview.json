@@ -1,0 +1,56 @@
+
+  "ids": {
+    "modelId": "lumi.motion.ac02",
+    "manufacturerName": "LUMI"
+  },
+  "endpoints": {
+    "endpointDescriptors": [
+      {
+        "endpointId": 1,
+        "applicationProfileId": 260,
+        "applicationDeviceId": 263,
+        "applicationDeviceVersion": 0,
+        "_reserved1": 1,
+        "inputClusters": [
+          0,
+          1,
+          3,
+          64704
+        ],
+        "outputClusters": [
+          3,
+          25,
+          64704
+        ]
+      }
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": {
+          "basic": {
+            "attributes": "UNSUP_GENERAL_COMMAND",
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "powerConfiguration": {
+            "attributes": "UNSUP_GENERAL_COMMAND",
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "identify": {
+            "attributes": "UNSUP_GENERAL_COMMAND",
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          }
+        },
+        "bindings": {
+          "identify": {
+            "attributes": "UNSUP_GENERAL_COMMAND",
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "ota": {}
+        }
+      }
+    }
+  }

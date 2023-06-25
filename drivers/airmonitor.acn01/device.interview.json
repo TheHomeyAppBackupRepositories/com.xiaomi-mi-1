@@ -1,0 +1,389 @@
+
+  "ids": {
+    "modelId": "lumi.airmonitor.acn01",
+    "manufacturerName": "LUMI"
+  },
+  "endpoints": {
+    "endpointDescriptors": [
+      {
+        "endpointId": 1,
+        "applicationProfileId": 260,
+        "applicationDeviceId": 770,
+        "applicationDeviceVersion": 0,
+        "_reserved1": 1,
+        "inputClusters": [
+          0,
+          3,
+          1026,
+          1029,
+          12,
+          1
+        ],
+        "outputClusters": [
+          25
+        ]
+      }
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": {
+          "basic": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 0,
+                "name": "zclVersion",
+                "value": 3
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 1,
+                "name": "appVersion",
+                "value": 24
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 2,
+                "name": "stackVersion",
+                "value": 2
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 3,
+                "name": "hwVersion",
+                "value": 1
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 4,
+                "name": "manufacturerName",
+                "value": "LUMI"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 5,
+                "name": "modelId",
+                "value": "lumi.airmonitor.acn01"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 6,
+                "name": "dateCode"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 7,
+                "name": "powerSource"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 8,
+                "name": "appProfileVersion",
+                "value": 255
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 9
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 10
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 11
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 16384,
+                "name": "swBuildId",
+                "value": "2020"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [],
+            "commandsReceived": [
+              "factoryReset"
+            ]
+          },
+          "identify": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 0
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [
+              0
+            ],
+            "commandsReceived": [
+              0,
+              1,
+              64
+            ]
+          },
+          "temperatureMeasurement": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable",
+                  "reportable"
+                ],
+                "id": 0,
+                "name": "measuredValue",
+                "value": 2373,
+                "reportingConfiguration": {
+                  "direction": "reported",
+                  "attributeDataType": 41,
+                  "minInterval": 3,
+                  "maxInterval": 0,
+                  "minChange": 50,
+                  "status": "SUCCESS"
+                }
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 1,
+                "name": "minMeasuredValue",
+                "value": -40
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 2,
+                "name": "maxMeasuredValue",
+                "value": 80
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [],
+            "commandsReceived": []
+          },
+          "relativeHumidity": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable",
+                  "reportable"
+                ],
+                "id": 0,
+                "name": "measuredValue",
+                "value": 6622,
+                "reportingConfiguration": {
+                  "direction": "reported",
+                  "attributeDataType": 33,
+                  "minInterval": 3,
+                  "maxInterval": 0,
+                  "minChange": 600,
+                  "status": "SUCCESS"
+                }
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 1,
+                "name": "minMeasuredValue",
+                "value": 0
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 2,
+                "name": "maxMeasuredValue",
+                "value": 100
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [],
+            "commandsReceived": []
+          },
+          "analogInput": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 81,
+                "name": "outOfService",
+                "value": false
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable",
+                  "reportable"
+                ],
+                "id": 85,
+                "name": "presentValue",
+                "value": 379
+              },
+              {
+                "acl": [
+                  "readable",
+                  "reportable"
+                ],
+                "id": 111,
+                "name": "statusFlags",
+                "value": {
+                  "type": "Buffer",
+                  "data": [
+                    0
+                  ]
+                }
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [],
+            "commandsReceived": []
+          },
+          "powerConfiguration": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable",
+                  "reportable"
+                ],
+                "id": 32,
+                "name": "batteryVoltage",
+                "value": 28
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 49,
+                "name": "batterySize",
+                "value": "CR2"
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 51,
+                "name": "batteryQuantity",
+                "value": 1
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 52,
+                "name": "batteryRatedVoltage",
+                "value": 30
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 53
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 54,
+                "name": "batteryVoltageMinThreshold",
+                "value": 27
+              },
+              {
+                "acl": [
+                  "readable",
+                  "reportable"
+                ],
+                "id": 62
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [],
+            "commandsReceived": []
+          }
+        },
+        "bindings": {
+          "ota": {}
+        }
+      }
+    }
+  }

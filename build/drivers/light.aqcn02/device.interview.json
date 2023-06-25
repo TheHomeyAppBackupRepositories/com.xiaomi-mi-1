@@ -1,0 +1,594 @@
+[
+
+  "ids": {
+    "modelId": "lumi.light.aqcn02",
+    "manufacturerName": "LUMI"
+  },
+  "endpoints": {
+    "endpointDescriptors": [
+      {
+        "endpointId": 1,
+        "applicationProfileId": 260,
+        "applicationDeviceId": 258,
+        "applicationDeviceVersion": 0,
+        "_reserved1": 1,
+        "inputClusters": [
+          0,
+          4,
+          3,
+          5,
+          10,
+          258,
+          13,
+          19,
+          6,
+          1,
+          1030,
+          8,
+          768,
+          1027,
+          1029,
+          1026
+        ],
+        "outputClusters": [
+          25,
+          10,
+          13,
+          258,
+          19,
+          6,
+          1,
+          1030,
+          8,
+          768
+        ]
+      }
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": {
+          "basic": {
+            "attributes": [
+              {
+                "id": 0,
+                "name": "zclVersion",
+                "value": 1,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 1,
+                "name": "appVersion",
+                "value": 22,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 2,
+                "name": "stackVersion",
+                "value": 2,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 3,
+                "name": "hwVersion",
+                "value": 1,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 4,
+                "name": "manufacturerName",
+                "value": "LUMI",
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 5,
+                "name": "modelId",
+                "value": "lumi.light.aqcn02",
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 6,
+                "name": "dateCode",
+                "value": "09-30-2018",
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 7,
+                "name": "powerSource",
+                "value": "dc",
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 16384,
+                "name": "swBuildId",
+                "value": "1.22",
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "TIMEOUT",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "groups": {
+            "attributes": [
+              {
+                "id": 0,
+                "name": "nameSupport",
+                "value": {
+                  "type": "Buffer",
+                  "data": [
+                    0
+                  ]
+                },
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "identify": {
+            "attributes": [
+              {
+                "id": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "scenes": {
+            "attributes": [
+              {
+                "id": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 1,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 2,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 3,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 4,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 5,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "time": {
+            "attributes": [],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "windowCovering": {
+            "attributes": [],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "analogOutput": {
+            "attributes": [],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "multistateOutput": {
+            "attributes": [],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "onOff": {
+            "attributes": [
+              {
+                "id": 0,
+                "name": "onOff",
+                "value": true,
+                "reportingConfiguration": {
+                  "direction": "reported",
+                  "attributeDataType": 16,
+                  "minInterval": 1,
+                  "maxInterval": 60,
+                  "status": "SUCCESS"
+                }
+              },
+              {
+                "id": 16385,
+                "name": "onTime",
+                "value": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 16386,
+                "name": "offWaitTime",
+                "value": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "powerConfiguration": {
+            "attributes": [
+              {
+                "id": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "occupancySensing": {
+            "attributes": [],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "levelControl": {
+            "attributes": [
+              {
+                "id": 0,
+                "name": "currentLevel",
+                "reportingConfiguration": {
+                  "direction": "reported",
+                  "attributeDataType": 32,
+                  "minInterval": 1,
+                  "maxInterval": 60,
+                  "minChange": 10,
+                  "status": "SUCCESS"
+                }
+              },
+              {
+                "id": 1,
+                "name": "remainingTime",
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 16,
+                "name": "onOffTransitionTime",
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "colorControl": {
+            "attributes": [
+              {
+                "id": 2,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 3,
+                "name": "currentX",
+                "value": 20650,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 4,
+                "name": "currentY",
+                "value": 21396,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 7,
+                "name": "colorTemperatureMireds",
+                "value": 153,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 8,
+                "name": "colorMode",
+                "value": "currentXAndCurrentY",
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 16395,
+                "name": "colorTempPhysicalMinMireds",
+                "value": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 16396,
+                "name": "colorTempPhysicalMaxMireds",
+                "value": 65279,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "pressureMeasurement": {
+            "attributes": [],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "relativeHumidity": {
+            "attributes": [],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "temperatureMeasurement": {
+            "attributes": [],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          }
+        },
+        "bindings": {
+          "time": {
+            "attributes": [],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "windowCovering": {
+            "attributes": [],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "analogOutput": {
+            "attributes": [],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "multistateOutput": {
+            "attributes": [],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "onOff": {
+            "attributes": [
+              {
+                "id": 0,
+                "name": "onOff",
+                "value": true,
+                "reportingConfiguration": {
+                  "direction": "reported",
+                  "attributeDataType": 16,
+                  "minInterval": 1,
+                  "maxInterval": 60,
+                  "status": "SUCCESS"
+                }
+              },
+              {
+                "id": 16385,
+                "name": "onTime",
+                "value": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 16386,
+                "name": "offWaitTime",
+                "value": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "powerConfiguration": {
+            "attributes": [
+              {
+                "id": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "occupancySensing": {
+            "attributes": [],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "levelControl": {
+            "attributes": [
+              {
+                "id": 0,
+                "name": "currentLevel",
+                "reportingConfiguration": {
+                  "direction": "reported",
+                  "attributeDataType": 32,
+                  "minInterval": 1,
+                  "maxInterval": 60,
+                  "minChange": 10,
+                  "status": "SUCCESS"
+                }
+              },
+              {
+                "id": 1,
+                "name": "remainingTime",
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 16,
+                "name": "onOffTransitionTime",
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "colorControl": {
+            "attributes": [
+              {
+                "id": 2,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 3,
+                "name": "currentX",
+                "value": 20650,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 4,
+                "name": "currentY",
+                "value": 21396,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 7,
+                "name": "colorTemperatureMireds",
+                "value": 153,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 8,
+                "name": "colorMode",
+                "value": "currentXAndCurrentY",
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 16395,
+                "name": "colorTempPhysicalMinMireds",
+                "value": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 16396,
+                "name": "colorTempPhysicalMaxMireds",
+                "value": 65279,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "ota": {
+            "attributes": [],
+            "commandsGenerated": "TIMEOUT",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          }
+        }
+      }
+    }
+  }
+]

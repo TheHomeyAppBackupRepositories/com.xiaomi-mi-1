@@ -1,0 +1,709 @@
+[
+
+  "ids": {
+    "modelId": "lumi.curtain",
+    "manufacturerName": "LUMI"
+  },
+  "endpoints": {
+    "endpointDescriptors": [
+      {
+        "endpointId": 1,
+        "applicationProfileId": 260,
+        "applicationDeviceId": 514,
+        "applicationDeviceVersion": 0,
+        "_reserved1": 1,
+        "inputClusters": [
+          0,
+          4,
+          3,
+          5,
+          10,
+          258,
+          13,
+          19,
+          6,
+          1,
+          1030
+        ],
+        "outputClusters": [
+          25,
+          10,
+          13,
+          258,
+          19,
+          6,
+          1,
+          1030
+        ]
+      }
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": {
+          "basic": {
+            "attributes": [
+              {
+                "id": 0,
+                "name": "zclVersion",
+                "value": 1,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 1,
+                "name": "appVersion",
+                "value": 9,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 2,
+                "name": "stackVersion",
+                "value": 2,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 3,
+                "name": "hwVersion",
+                "value": 17,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 4,
+                "name": "manufacturerName",
+                "value": "LUMI",
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 5,
+                "name": "modelId",
+                "value": "lumi.curtain",
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 6,
+                "name": "dateCode",
+                "value": "04-13-2017",
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 7,
+                "name": "powerSource",
+                "value": "mains",
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "groups": {
+            "attributes": [
+              {
+                "id": 0,
+                "name": "nameSupport",
+                "value": {
+                  "type": "Buffer",
+                  "data": [
+                    0
+                  ]
+                },
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "identify": {
+            "attributes": [
+              {
+                "id": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "scenes": {
+            "attributes": [
+              {
+                "id": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 1,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 2,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 3,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 4,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 5,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "time": {
+            "attributes": [],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "windowCovering": {
+            "attributes": [
+              {
+                "id": 0,
+                "name": "windowCoveringType",
+                "value": "drapery",
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 7,
+                "name": "configStatus",
+                "value": {
+                  "type": "Buffer",
+                  "data": [
+                    123
+                  ]
+                },
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 8,
+                "name": "currentPositionLiftPercentage",
+                "value": 14,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 16,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 17,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 18,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 19,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 23,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "analogOutput": {
+            "attributes": [
+              {
+                "id": 65,
+                "name": "maxPresentValue",
+                "value": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 69,
+                "name": "minPresentValue",
+                "value": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 81,
+                "name": "outOfService",
+                "value": false,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 85,
+                "name": "presentValue",
+                "value": 14,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 111,
+                "name": "statusFlags",
+                "value": {
+                  "type": "Buffer",
+                  "data": [
+                    0
+                  ]
+                },
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "multistateOutput": {
+            "attributes": [
+              {
+                "id": 74,
+                "name": "numberOfStates",
+                "value": 6,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 81,
+                "name": "outOfService",
+                "value": false,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 85,
+                "name": "presentValue",
+                "value": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 111,
+                "name": "statusFlags",
+                "value": {
+                  "type": "Buffer",
+                  "data": [
+                    0
+                  ]
+                },
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "onOff": {
+            "attributes": [
+              {
+                "id": 0,
+                "name": "onOff",
+                "value": false,
+                "reportingConfiguration": {
+                  "direction": "reported",
+                  "attributeDataType": 16,
+                  "minInterval": 1,
+                  "maxInterval": 60,
+                  "status": "SUCCESS"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "powerConfiguration": {
+            "attributes": [
+              {
+                "id": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 16,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "occupancySensing": {
+            "attributes": [
+              {
+                "id": 0,
+                "name": "occupancy",
+                "value": {
+                  "type": "Buffer",
+                  "data": [
+                    0
+                  ]
+                },
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 1,
+                "name": "occupancySensorType",
+                "value": "pir",
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          }
+        },
+        "bindings": {
+          "time": {
+            "attributes": [],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "windowCovering": {
+            "attributes": [
+              {
+                "id": 0,
+                "name": "windowCoveringType",
+                "value": "drapery",
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 7,
+                "name": "configStatus",
+                "value": {
+                  "type": "Buffer",
+                  "data": [
+                    123
+                  ]
+                },
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 8,
+                "name": "currentPositionLiftPercentage",
+                "value": 14,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 16,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 17,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 18,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 19,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 23,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "analogOutput": {
+            "attributes": [
+              {
+                "id": 65,
+                "name": "maxPresentValue",
+                "value": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 69,
+                "name": "minPresentValue",
+                "value": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 81,
+                "name": "outOfService",
+                "value": false,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 85,
+                "name": "presentValue",
+                "value": 14,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 111,
+                "name": "statusFlags",
+                "value": {
+                  "type": "Buffer",
+                  "data": [
+                    0
+                  ]
+                },
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "multistateOutput": {
+            "attributes": [
+              {
+                "id": 74,
+                "name": "numberOfStates",
+                "value": 6,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 81,
+                "name": "outOfService",
+                "value": false,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 85,
+                "name": "presentValue",
+                "value": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 111,
+                "name": "statusFlags",
+                "value": {
+                  "type": "Buffer",
+                  "data": [
+                    0
+                  ]
+                },
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "onOff": {
+            "attributes": [
+              {
+                "id": 0,
+                "name": "onOff",
+                "value": false,
+                "reportingConfiguration": {
+                  "direction": "reported",
+                  "attributeDataType": 16,
+                  "minInterval": 1,
+                  "maxInterval": 60,
+                  "status": "SUCCESS"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "powerConfiguration": {
+            "attributes": [
+              {
+                "id": 0,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 16,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "occupancySensing": {
+            "attributes": [
+              {
+                "id": 0,
+                "name": "occupancy",
+                "value": {
+                  "type": "Buffer",
+                  "data": [
+                    0
+                  ]
+                },
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "id": 1,
+                "name": "occupancySensorType",
+                "value": "pir",
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              }
+            ],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          },
+          "ota": {
+            "attributes": [],
+            "commandsGenerated": "UNSUP_GENERAL_COMMAND",
+            "commandsReceived": "UNSUP_GENERAL_COMMAND"
+          }
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,295 @@
+
+  "ids": {
+    "modelId": "lumi.remote.b28ac1",
+    "manufacturerName": "LUMI"
+  },
+  "endpoints": {
+    "endpointDescriptors": [
+      {
+        "endpointId": 1,
+        "applicationProfileId": 260,
+        "applicationDeviceId": 259,
+        "applicationDeviceVersion": 0,
+        "_reserved1": 1,
+        "inputClusters": [
+          0,
+          3,
+          1
+        ],
+        "outputClusters": [
+          3,
+          6
+        ]
+      },
+      {
+        "endpointId": 3,
+        "applicationProfileId": 260,
+        "applicationDeviceId": 259,
+        "applicationDeviceVersion": 0,
+        "_reserved1": 1,
+        "inputClusters": [
+          3
+        ],
+        "outputClusters": [
+          6
+        ]
+      }
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": {
+          "basic": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 0,
+                "name": "zclVersion",
+                "value": 3
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 1,
+                "name": "appVersion",
+                "value": 21
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 2,
+                "name": "stackVersion",
+                "value": 2
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 3,
+                "name": "hwVersion",
+                "value": 1
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 4,
+                "name": "manufacturerName",
+                "value": "LUMI"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 5,
+                "name": "modelId",
+                "value": "lumi.remote.b28ac1"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 6,
+                "name": "dateCode"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 7,
+                "name": "powerSource",
+                "value": "battery"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 8,
+                "name": "appProfileVersion",
+                "value": 255
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 9
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 10
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 11
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 16384,
+                "name": "swBuildId",
+                "value": "2019"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [],
+            "commandsReceived": [
+              "factoryReset"
+            ]
+          },
+          "identify": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 0
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [
+              0
+            ],
+            "commandsReceived": [
+              0,
+              1,
+              64
+            ]
+          },
+          "powerConfiguration": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable",
+                  "reportable"
+                ],
+                "id": 32,
+                "name": "batteryVoltage",
+                "value": 31
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 49,
+                "name": "batterySize",
+                "value": "CR2"
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 51,
+                "name": "batteryQuantity",
+                "value": 1
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 52,
+                "name": "batteryRatedVoltage",
+                "value": 30
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 53
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 54,
+                "name": "batteryVoltageMinThreshold",
+                "value": 27
+              },
+              {
+                "acl": [
+                  "readable",
+                  "reportable"
+                ],
+                "id": 62
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [],
+            "commandsReceived": []
+          }
+        },
+        "bindings": {
+          "identify": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 0
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [
+              0
+            ],
+            "commandsReceived": [
+              0,
+              1,
+              64
+            ]
+          },
+          "onOff": {}
+        }
+      },
+      "3": {
+        "clusters": {
+          "identify": {}
+        },
+        "bindings": {
+          "onOff": {}
+        }
+      }
+    }
+  }

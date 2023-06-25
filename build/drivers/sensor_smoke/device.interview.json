@@ -1,0 +1,44 @@
+[
+
+  "ids": {
+    "modelId": "lumi.sensor_smoke",
+    "manufacturerName": "LUMI"
+  },
+  "endpoints": {
+    "endpointDescriptors": [
+      {
+        "endpointId": 1,
+        "applicationProfileId": 260,
+        "applicationDeviceId": 1026,
+        "applicationDeviceVersion": 0,
+        "_reserved1": 1,
+        "inputClusters": [
+          0,
+          3,
+          18,
+          1280,
+          12,
+          1
+        ],
+        "outputClusters": [
+          25
+        ]
+      }
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": {
+          "basic": {},
+          "identify": {},
+          "multistateInput": {},
+          "iasZone": {},
+          "analogInput": {},
+          "powerConfiguration": {}
+        },
+        "bindings": {
+          "ota": {}
+        }
+      }
+    }
+  }
+]
