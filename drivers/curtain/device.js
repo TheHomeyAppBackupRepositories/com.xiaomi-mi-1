@@ -43,20 +43,6 @@ class AqaraCurtain extends ZigBeeDevice {
       this.removeCapability('dim').catch(this.error);
     }
 
-    // try {
-    //  const { xiaomiCurtain } = await zclNode.endpoints[this.getClusterEndpoint(XiaomiBasicCluster)].clusters[XiaomiBasicCluster.NAME].readAttributes('xiaomiCurtain');
-    //  this.log('READattributes XiaomiCurtain', xiaomiCurtain, xiaomiCurtain[1], xiaomiCurtain[3], xiaomiCurtain[5]);
-    // await this.setSettings({ external_switch_type: switchType, save_state: powerOffMemory });
-    // } catch (err) {
-    //  this.log('could not read Attribute XiaomiBasicCluster:', err);
-    // }
-
-    // this.log('CLASS:', this.getClass(), this.getClass() === 'windowcoverings');
-
-    // this.log('READ:', await zclNode.endpoints[1].clusters[XiaomiBasicCluster.NAME].readAttributes('XiaomiCurtain'));
-
-    // this.log('DISCO:', BasicCluster.discoverAttributes());
-
     if (this.hasCapability('onoff')) {
       this.registerCapability('onoff', CLUSTER.ON_OFF, {
         endpoint: 1,
@@ -82,26 +68,6 @@ class AqaraCurtain extends ZigBeeDevice {
           waitForResponse: false,
         });
       });
-
-      /*
-      this.registerCapability('windowcoverings_set', CLUSTER.WINDOW_COVERING, {
-        get: 'currentPositionLiftPercentage',
-        getOpts: {
-          getOnStart: true,
-        },
-        set: 'goToLiftPercentage',
-        setParser(value) {
-          return {
-            percentageLiftValue: (1 - value) * 100,
-          };
-        },
-        report: 'currentPositionLiftPercentage',
-        reportParser(value) {
-          return 1 - (value / 100);
-        },
-        endpoint: 1,
-      });
-      */
 
       // Get Position
       zclNode.endpoints[1].clusters[CLUSTER.ANALOG_OUTPUT.NAME]

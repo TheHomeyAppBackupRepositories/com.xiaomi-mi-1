@@ -25,14 +25,7 @@ class AqaraD1WallSwitchTrippleL extends ZigBeeDevice {
     // print the node's info to the console
     // this.printNode();
 
-    // Set Aqara Opple mode to 1
-    if (this.isFirstInit()) {
-      try {
-        await zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ mode: 1 }); // , aqaraRemoteMode: 2
-      } catch (err) {
-        this.error('failed to write mode attributes', err);
-      }
-    }
+    this.initAqaraMode();
 
     this.endpointIds = {
       leftSwitch: 1,
@@ -54,6 +47,17 @@ class AqaraD1WallSwitchTrippleL extends ZigBeeDevice {
     // Register the AttributeReportListener - Lifeline
     zclNode.endpoints[this.getClusterEndpoint(AqaraManufacturerSpecificCluster)].clusters[AqaraManufacturerSpecificCluster.NAME]
       .on('attr.aqaraLifeline', this.onAqaraLifelineAttributeReport.bind(this));
+  }
+
+  async initAqaraMode() {
+    // Set Aqara Opple mode to 1 to force sending messages
+    if (this.isFirstInit()) {
+      try {
+        await this.zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ mode: 1 });
+      } catch (err) {
+        this.error('failed to write mode attributes', err);
+      }
+    }
   }
 
   /**

@@ -41,67 +41,37 @@ class AqaraD1WallSwitchDoubleLN extends ZigBeeDevice {
       });
     }
 
-    // measure_power switch
-    // applicationType : 589824 = 0x090000 Power in Watts
     // Register measure_power capability
-
-    // measure_power
     if (this.hasCapability('measure_power')) {
       // Define acPower parsing factor based on device settings
-      if (typeof this.getStoreValue('activePowerFactor') !== 'number') {
-        try {
-          const { acPowerMultiplier, acPowerDivisor } = await zclNode.endpoints[this.getClusterEndpoint(CLUSTER.ELECTRICAL_MEASUREMENT)].clusters[CLUSTER.ELECTRICAL_MEASUREMENT.NAME].readAttributes('acPowerMultiplier', 'acPowerDivisor');
-          this.activePowerFactor = acPowerMultiplier / acPowerDivisor;
-          this.setStoreValue('activePowerFactor', this.activePowerFactor).catch(this.error);
-          this.debug('SET activePowerFactor:', acPowerMultiplier, acPowerDivisor, this.activePowerFactor);
-        } catch (err) {
-          this.debug('Could not read electricaMeasurementCluster attributes `acPowerMultiplier`, `acPowerDivisor`:', err);
-          this.activePowerFactor = 0.1; // default value
-          this.debug('DEFAULT activePowerFactor:', this.activePowerFactor);
-        }
-      } else {
-        this.activePowerFactor = this.getStoreValue('activePowerFactor');
-        this.debug('READ activePowerFactor:', this.activePowerFactor);
-      }
+
+      // Define electricaMeasurement cluster attribute reporting and parsing options. Do NOT await this.initElectricalMeasurementClusterAttributeReporting()
+      if (!this.activePowerFactor) this.initElectricalMeasurementClusterAttributeReporting({ zclNode });
 
       this.registerCapability('measure_power', CLUSTER.ELECTRICAL_MEASUREMENT, {
-        reportOpts: {
+        /* reportOpts: {
           configureAttributeReporting: {
             minInterval: 5, // Minimum interval of 5 seconds
             maxInterval: 300, // Maximally every ~16 hours
             minChange: 1 / this.activePowerFactor, // Report when value changed by 5
           },
-        },
+        }, */
         endpoint: this.getClusterEndpoint(CLUSTER.ELECTRICAL_MEASUREMENT),
       });
     }
 
     if (this.hasCapability('meter_power')) {
-      // Define acPower parsing factor based on device settings
-      if (typeof this.getStoreValue('meteringFactor') !== 'number') {
-        try {
-          const { multiplier, divisor } = await zclNode.endpoints[this.getClusterEndpoint(CLUSTER.METERING)].clusters[CLUSTER.METERING.NAME].readAttributes('multiplier', 'divisor');
-          this.meteringFactor = multiplier / divisor;
-          this.setStoreValue('meteringFactor', this.meteringFactor).catch(this.error);
-          this.debug('SET meteringFactor:', multiplier, divisor, this.meteringFactor);
-        } catch (err) {
-          this.debug('could not read meteringCluster attributes `multiplier` and `divisor`:', err);
-          this.meteringFactor = 0.001; // default value
-          this.debug('DEFAULT meteringFactor:', this.meteringFactor);
-        }
-      } else {
-        this.meteringFactor = this.getStoreValue('meteringFactor');
-        this.debug('READ activePowerFactor:', this.meteringFactor);
-      }
+      // Define Metering cluster attribute reporting and parsing options. Do NOT await this.initMeteringClusterAttributeReporting()
+      if (!this.meteringFactor) this.initMeteringClusterAttributeReporting({ zclNode });
 
       this.registerCapability('meter_power', CLUSTER.METERING, {
-        reportOpts: {
+        /* reportOpts: {
           configureAttributeReporting: {
             minInterval: 300, // Minimum interval of 5 minutes
             maxInterval: 3600, // Maximally every ~16 hours
             minChange: 0.01 / this.meteringFactor, // Report when value changed by 5
           },
-        },
+        }, */
         endpoint: this.getClusterEndpoint(CLUSTER.METERING),
       });
     }
@@ -110,6 +80,62 @@ class AqaraD1WallSwitchDoubleLN extends ZigBeeDevice {
 
     // zclNode.endpoints[1].clusters[XiaomiBasicCluster.NAME]
     //  .on('attr.xiaomiLifeline', this.onXiaomiLifelineAttributeReport.bind(this));
+  }
+
+  async initMeteringClusterAttributeReporting({ zclNode }) {
+    if (!this.getStoreValue('meteringFactor')) {
+      try {
+        const { multiplier, divisor } = await this.zclNode.endpoints[this.getClusterEndpoint(CLUSTER.METERING)].clusters[CLUSTER.METERING.NAME].readAttributes(['multiplier', 'divisor']).catch(this.error);
+        this.meteringFactor = multiplier / divisor;
+        this.setStoreValue('meteringFactor', this.meteringFactor).catch(this.error);
+        this.debug('meteringFactor read from multiplier and divisor attributes:', multiplier, divisor, this.meteringFactor);
+      } catch (error) {
+        this.meteringFactor = 1 / 3600000; // fall back, not stored. Will be retried at the next onNodeInit
+        this.debug('meteringFactor NOT read from multiplier and divisor attributes, due to', error);
+      }
+    } else {
+      this.meteringFactor = this.getStoreValue('meteringFactor');
+      this.debug('meteringFactor retrieved from Store:', this.meteringFactor);
+    }
+    this.log('Defined meteringFactor:', this.meteringFactor);
+    this.debug('--  initializing attribute reporting for the metering cluster');
+    await this.configureAttributeReporting([{
+      cluster: CLUSTER.METERING,
+      attributeName: 'currentSummationDelivered',
+      minInterval: 300,
+      maxInterval: 3600,
+      minChange: 0.01 / this.meteringFactor,
+      endpointId: this.getClusterEndpoint(CLUSTER.METERING),
+    }]).catch(this.error);
+  }
+
+  async initElectricalMeasurementClusterAttributeReporting({ zclNode }) {
+    if (!this.getStoreValue('activePowerFactor')) {
+      try {
+        const { acPowerMultiplier, acPowerDivisor } = await this.zclNode.endpoints[this.getClusterEndpoint(CLUSTER.ELECTRICAL_MEASUREMENT)].clusters[CLUSTER.ELECTRICAL_MEASUREMENT.NAME]
+          .readAttributes(['acPowerMultiplier', 'acPowerDivisor']);
+        this.activePowerFactor = acPowerMultiplier / acPowerDivisor;
+        this.setStoreValue('activePowerFactor', this.activePowerFactor).catch(this.error);
+        this.debug('activePowerFactor read from acPowerMultiplier and acPowerDivisor attributes:', acPowerMultiplier, acPowerDivisor, this.activePowerFactor);
+      } catch (error) {
+        this.activePowerFactor = 0.1; // fall back, not stored. Will be retried at the next onNodeInit
+        this.debug('activePowerFactor NOT read from acPowerMultiplier and acPowerDivisor attributes, due to', error);
+      }
+    } else {
+      this.activePowerFactor = this.getStoreValue('activePowerFactor');
+      this.debug('activePowerFactor retrieved from Store:', this.activePowerFactor);
+    }
+    this.log('Defined activePowerFactor:', this.activePowerFactor);
+
+    this.debug('--  initializing attribute reporting for the electricalMeasurement cluster');
+    await this.configureAttributeReporting([{
+      cluster: CLUSTER.ELECTRICAL_MEASUREMENT,
+      attributeName: 'activePower',
+      minInterval: 5,
+      maxInterval: 300,
+      minChange: 0.5 / this.activePowerFactor,
+      endpointId: this.getClusterEndpoint(CLUSTER.ELECTRICAL_MEASUREMENT),
+    }]).catch(this.error);
   }
 
   /**

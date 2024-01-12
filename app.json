@@ -18,8 +18,8 @@
       "Opple"
     ]
   },
-  "version": "1.7.1",
-  "compatibility": ">=8.0.0",
+  "version": "1.7.5",
+  "compatibility": ">=10.0.0",
   "support": "https://community.athom.com/t/156",
   "athomForumDiscussionId": 4120,
   "homeyCommunityTopicId": 156,
@@ -7339,6 +7339,30 @@
         "nl": "Kantel alarm ging uit"
       }
     },
+    "alarm_valve": {
+      "type": "boolean",
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/alarm_valve.svg",
+      "title": {
+        "en": "Thermostat valve Alarm",
+        "nl": "Thermostaat motor alarm"
+      },
+      "desc": {
+        "en": "True when the thermostat valve is stuck or jammed",
+        "nl": "Gaat af wanneer de thermostaat motor geblokkeerd is"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Thermostat valve alarm turned on",
+        "nl": "Thermostaat motor alarm ging af"
+      },
+      "insightsTitleFalse": {
+        "en": "Thermostat valve alarm turned off",
+        "nl": "Thermostaat motor alarm ging uit"
+      }
+    },
     "alarm_vibration": {
       "type": "boolean",
       "uiComponent": "sensor",
@@ -7382,6 +7406,48 @@
       "setable": false,
       "uiComponent": "sensor",
       "icon": "/assets/capabilities/alarm_VOC.svg",
+      "uiQuickAction": false
+    },
+    "calibration_state": {
+      "type": "boolean",
+      "title": {
+        "en": "Calibration state",
+        "nl": "Calibratie toestand"
+      },
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Valve calibrated",
+        "nl": "Thermostaatkraan is gecalibreerd"
+      },
+      "insightsTitleFalse": {
+        "en": "Valve is not calibrated",
+        "nl": "Thermostaatkraan is niet gecalibreerd"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/child_lock.svg",
+      "uiQuickAction": false
+    },
+    "child_lock": {
+      "type": "boolean",
+      "title": {
+        "en": "Child lock",
+        "nl": "Kinderslot"
+      },
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Child lock activated",
+        "nl": "Kinderslot ingeschakeld"
+      },
+      "insightsTitleFalse": {
+        "en": "Child lock deactivated",
+        "nl": "Kinderslot uitgeschakeld"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "toggle",
+      "icon": "/assets/capabilities/child_lock.svg",
       "uiQuickAction": false
     },
     "cube_measure_rotation": {
@@ -7835,6 +7901,45 @@
         }
       ]
     },
+    "thermostat_mode_AqaraTRV": {
+      "title": {
+        "en": "Thermostat Mode"
+      },
+      "type": "enum",
+      "setable": true,
+      "getable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "off",
+          "title": {
+            "en": "Off",
+            "nl": "Uit"
+          }
+        },
+        {
+          "id": "auto",
+          "title": {
+            "en": "Auto",
+            "nl": "Automatisch"
+          }
+        },
+        {
+          "id": "manual",
+          "title": {
+            "en": "Manual",
+            "nl": "Handmatig"
+          }
+        },
+        {
+          "id": "away",
+          "title": {
+            "en": "Away",
+            "nl": "Afwezig"
+          }
+        }
+      ]
+    },
     "trigger_interval": {
       "type": "number",
       "uiComponent": "sensor",
@@ -7851,6 +7956,27 @@
       "decimals": 2,
       "min": 1,
       "max": 200
+    },
+    "valve_state": {
+      "type": "boolean",
+      "title": {
+        "en": "Valve state",
+        "nl": "Thermostaatkraan toestand"
+      },
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Valve state OK",
+        "nl": "Thermostaatkraan toestand OK"
+      },
+      "insightsTitleFalse": {
+        "en": "Valve state NOK",
+        "nl": "Thermostaatkraan toestand NOK"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/valve_state.svg",
+      "uiQuickAction": false
     }
   }
 }
