@@ -25,7 +25,13 @@ class AqaraT1SwitchModule extends ZigBeeDevice {
     // print the node's info to the console
     // this.printNode();
 
-    this.initSettings();
+    try {
+      const { aqaraSwitchType, aqaraPowerOutageMemory } = await zclNode.endpoints[this.getClusterEndpoint(AqaraManufacturerSpecificCluster)].clusters[AqaraManufacturerSpecificCluster.NAME].readAttributes('aqaraSwitchType', 'aqaraPowerOutageMemory');
+      this.log('READattributes', aqaraSwitchType, aqaraPowerOutageMemory);
+    } catch (err) {
+      this.log('could not read Attribute AqaraManufacturerSpecificCluster');
+      this.log(err);
+    }
 
     if (this.hasCapability('onoff')) {
       this.registerCapability('onoff', CLUSTER.ON_OFF, {
@@ -35,8 +41,12 @@ class AqaraT1SwitchModule extends ZigBeeDevice {
 
     // measure_power
     if (this.hasCapability('measure_power')) {
-      // Define acPower parsing factor based on device settings, do NOT await this.initRinitPowerFactorefCurrentSummationDelivered()
-      if (!this.activePowerFactor) this.initPowerFactor();
+      // Define acPower parsing factor based on device settings
+      if (typeof this.activePowerFactor !== 'number') {
+        const { acPowerMultiplier, acPowerDivisor } = await zclNode.endpoints[this.getClusterEndpoint(CLUSTER.ELECTRICAL_MEASUREMENT)].clusters[CLUSTER.ELECTRICAL_MEASUREMENT.NAME].readAttributes('acPowerMultiplier', 'acPowerDivisor');
+        this.activePowerFactor = acPowerMultiplier / acPowerDivisor;
+        this.debug('activePowerFactor:', acPowerMultiplier, acPowerDivisor, this.activePowerFactor);
+      }
 
       this.registerCapability('measure_power', CLUSTER.ELECTRICAL_MEASUREMENT, {
         reportOpts: {
@@ -51,8 +61,12 @@ class AqaraT1SwitchModule extends ZigBeeDevice {
     }
 
     if (this.hasCapability('meter_power')) {
-      // Define acPower parsing factor based on device settings. Do NOT await this.initMeterFactor()
-      if (!this.meteringFactor) this.initMeterFactor();
+      // Define acPower parsing factor based on device settings
+      if (typeof this.meteringFactor !== 'number') {
+        const { multiplier, divisor } = await zclNode.endpoints[this.getClusterEndpoint(CLUSTER.METERING)].clusters[CLUSTER.METERING.NAME].readAttributes('multiplier', 'divisor');
+        this.meteringFactor = multiplier / divisor;
+        this.debug('meteringFactor:', multiplier, divisor, this.meteringFactor);
+      }
 
       this.registerCapability('meter_power', CLUSTER.METERING, {
         reportOpts: {
@@ -69,44 +83,6 @@ class AqaraT1SwitchModule extends ZigBeeDevice {
     // Register the AttributeReportListener - Lifeline
     zclNode.endpoints[this.getClusterEndpoint(AqaraManufacturerSpecificCluster)].clusters[AqaraManufacturerSpecificCluster.NAME]
       .on('attr.aqaraLifeline', this.onAqaraLifelineAttributeReport.bind(this));
-  }
-
-  async initSettings() {
-    try {
-      const { aqaraSwitchType, aqaraPowerOutageMemory } = await this.zclNode.endpoints[this.getClusterEndpoint(AqaraManufacturerSpecificCluster)].clusters[AqaraManufacturerSpecificCluster.NAME].readAttributes(['aqaraSwitchType', 'aqaraPowerOutageMemory']).catch(this.error);
-      this.log('READattributes', aqaraSwitchType, aqaraPowerOutageMemory);
-    } catch (err) {
-      this.log('could not read Attribute AqaraManufacturerSpecificCluster');
-      this.log(err);
-    }
-  }
-
-  async initPowerFactor() {
-    // this.log("DEBUG: not meteringFactor", typeof this.getStoreValue('meteringFactor') !== 'number', !this.getStoreValue('meteringFactor'), !this.getStoreValue('meteringFactor2'));
-    if (!this.getStoreValue('activePowerFactor')) {
-      const { acPowerMultiplier, acPowerDivisor } = await this.zclNode.endpoints[this.getClusterEndpoint(CLUSTER.ELECTRICAL_MEASUREMENT)].clusters[CLUSTER.ELECTRICAL_MEASUREMENT.NAME].readAttributes(['acPowerMultiplier', 'acPowerDivisor']).catch(this.error);
-      this.activePowerFactor = acPowerMultiplier / acPowerDivisor;
-      this.setStoreValue('activePowerFactor', this.activePowerFactor).catch(this.error);
-      this.debug('activePowerFactor read from acPowerMultiplier and acPowerDivisor attributes:', acPowerMultiplier, acPowerDivisor, this.activePowerFactor);
-    } else {
-      this.activePowerFactor = this.getStoreValue('activePowerFactor');
-      this.debug('activePowerFactor retrieved from Store:', this.activePowerFactor);
-    }
-    this.log('Defined activePowerFactor:', this.activePowerFactor);
-  }
-
-  async initMeterFactor() {
-    // this.log("DEBUG: not meteringFactor", typeof this.getStoreValue('meteringFactor') !== 'number', !this.getStoreValue('meteringFactor'), !this.getStoreValue('meteringFactor2'));
-    if (!this.getStoreValue('meteringFactor')) {
-      const { multiplier, divisor } = await this.zclNode.endpoints[this.getClusterEndpoint(CLUSTER.ELECTRICAL_MEASUREMENT)].clusters[CLUSTER.METERING.NAME].readAttributes(['multiplier', 'divisor']).catch(this.error);
-      this.meteringFactor = multiplier / divisor;
-      this.setStoreValue('meteringFactor', this.meteringFactor).catch(this.error);
-      this.debug('meteringFactor read from multiplier and divisor attributes:', multiplier, divisor, this.meteringFactor);
-    } else {
-      this.meteringFactor = this.getStoreValue('meteringFactor');
-      this.debug('meteringFactor retrieved from Store:', this.meteringFactor);
-    }
-    this.log('Defined meteringFactor:', this.meteringFactor);
   }
 
   /**

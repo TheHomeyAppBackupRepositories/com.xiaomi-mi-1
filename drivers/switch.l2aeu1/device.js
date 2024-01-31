@@ -37,7 +37,28 @@ class AqaraH1WallSwitchDoubleL extends ZigBeeDevice {
     const subDeviceId = this.isSubDevice() ? this.getData().subDeviceId : 'leftSwitch';
     this.log('Initializing', subDeviceId, 'at endpoint', this.endpointIds[subDeviceId]);
 
-    this.initAqaraMode();
+    if (this.isFirstInit()) {
+      try {
+        await zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ mode: 1 }); // , aqaraRemoteMode: 2
+      } catch (err) {
+        this.error('failed to write mode attributes', err);
+      }
+    }
+
+    /*
+    if (!subDeviceId && this.isFirstInit()) {
+      try {
+        await zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ aqaraSwitchOperationMode: 1 }); // , aqaraRemoteMode: 2
+      } catch (err) {
+        this.error('failed to write aqaraSwitchOperationMode attribute', err);
+      }
+      try {
+        await zclNode.endpoints[2].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ aqaraSwitchOperationMode: 1 }); // , aqaraRemoteMode: 2
+      } catch (err) {
+        this.error('failed to write aqaraSwitchOperationMode attribute', err);
+      }
+    }
+    */
 
     // Register capabilities and reportListeners for Left or Right switch
     if (this.hasCapability('onoff')) {
@@ -86,17 +107,6 @@ class AqaraH1WallSwitchDoubleL extends ZigBeeDevice {
     // Register the AttributeReportListener - Lifeline
     zclNode.endpoints[this.getClusterEndpoint(AqaraManufacturerSpecificCluster)].clusters[AqaraManufacturerSpecificCluster.NAME]
       .on('attr.aqaraLifeline', this.onAqaraLifelineAttributeReport.bind(this));
-  }
-
-  async initAqaraMode() {
-    // Set Aqara Opple mode to 1 to force sending messages
-    if (this.isFirstInit()) {
-      try {
-        await this.zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ mode: 1 });
-      } catch (err) {
-        this.error('failed to write mode attributes', err);
-      }
-    }
   }
 
   onPresentValueAttributeReport(reportingClusterName, reportingAttribute, button, presentValue) {

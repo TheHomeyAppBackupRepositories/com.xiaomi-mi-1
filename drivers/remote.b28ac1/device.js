@@ -29,7 +29,33 @@ class AqaraH1Remoteb28ac1 extends ZigBeeDevice {
     // Enables debug logging in zigbee-clusters
     // debug(true);
 
-    this.initAqaraMode();
+    // Set Aqara Opple mode to 1 to force sending MULTI_STATE_INPUT messages
+    if (this.isFirstInit()) {
+      try {
+        await zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ mode: 1 }); // , aqaraRemoteMode: 2
+      } catch (err) {
+        this.error('failed to write mode attributes', err);
+      }
+
+      try {
+        await zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ aqaraRemoteMode: 2 }); // , aqaraRemoteMode: 2
+      } catch (err) {
+        this.error('failed to write RemoteMode attributes', err);
+      }
+
+      try {
+        await this.configureAttributeReporting([{
+          endpointId: this.getClusterEndpoint(CLUSTER.POWER_CONFIGURATION),
+          cluster: CLUSTER.POWER_CONFIGURATION,
+          attributeName: 'batteryVoltage',
+          minInterval: 0,
+          maxInterval: 3600,
+          minChange: 1,
+        }]);
+      } catch (err) {
+        this.error('failed to write RemoteMode attributes', err);
+      }
+    }
 
     // add battery capabilities if needed
     if (!this.hasCapability('measure_battery')) {
@@ -73,36 +99,6 @@ class AqaraH1Remoteb28ac1 extends ZigBeeDevice {
 
     // define and register FlowCardTriggers
     this.onButtonAutocomplete = this.onButtonAutocomplete.bind(this);
-  }
-
-  async initAqaraMode() {
-    // Set Aqara Opple mode to 1 to force sending MULTI_STATE_INPUT messages
-    if (this.isFirstInit()) {
-      try {
-        await this.zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ mode: 1 }); // , aqaraRemoteMode: 2
-      } catch (err) {
-        this.error('failed to write mode attributes', err);
-      }
-
-      try {
-        await this.zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ aqaraRemoteMode: 2 }); // , aqaraRemoteMode: 2
-      } catch (err) {
-        this.error('failed to write RemoteMode attributes', err);
-      }
-
-      try {
-        await this.configureAttributeReporting([{
-          endpointId: this.getClusterEndpoint(CLUSTER.POWER_CONFIGURATION),
-          cluster: CLUSTER.POWER_CONFIGURATION,
-          attributeName: 'batteryVoltage',
-          minInterval: 0,
-          maxInterval: 3600,
-          minChange: 1,
-        }]);
-      } catch (err) {
-        this.error('failed to write RemoteMode attributes', err);
-      }
-    }
   }
 
   onPresentValueAttributeReport(repButton, repScene) {

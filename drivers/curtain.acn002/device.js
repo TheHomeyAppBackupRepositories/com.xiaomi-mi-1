@@ -22,9 +22,23 @@ class AqaraE1RollerShadeCompanion extends ZigBeeDevice {
     // print the node's info to the console
     // this.printNode();
 
-    this.initAqaraMode();
+    if (this.isFirstInit()) {
+      try {
+        await zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ mode: 1 }).catch(this.error);
+      } catch (err) {
+        this.error('failed to write mode attributes', err);
+      }
+    }
 
-    this.initSettings();
+    try {
+      const {
+        aqaraCurtainReverse, aqaraCurtainOperatingSpeed, aqaraChargingStatus, aqaraBatteryStatus,
+      } = await zclNode.endpoints[this.getClusterEndpoint(AqaraManufacturerSpecificCluster)].clusters[AqaraManufacturerSpecificCluster.NAME].readAttributes('aqaraCurtainReverse', 'aqaraCurtainOperatingSpeed', 'aqaraChargingStatus', 'aqaraBatteryStatus').catch(this.error);
+      this.log('READattributes during onInit: reverse_direction', aqaraCurtainReverse, 'aqaraCurtainOperatingSpeed', aqaraCurtainOperatingSpeed, 'aqaraChargingStatus', aqaraChargingStatus === 1, 'aqaraBatteryStatus', aqaraBatteryStatus);
+      await this.setSettings({ reverse_direction: aqaraCurtainReverse, curtain_operating_speed: String(aqaraCurtainOperatingSpeed) });
+    } catch (err) {
+      this.log('could not read Attribute AqaraManufacturerSpecificCluster:', err);
+    }
 
     // Define windowcoverings_set capability (1.0 = open, 0.0 = closed)
     if (this.hasCapability('windowcoverings_set')) {
@@ -45,36 +59,6 @@ class AqaraE1RollerShadeCompanion extends ZigBeeDevice {
     // Register the AttributeReportListener - Lifeline
     zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME]
       .on('attr.aqaraLifeline', this.onAqaraLifelineAttributeReport.bind(this));
-  }
-
-  async initAqaraMode() {
-    if (this.isFirstInit()) {
-      try {
-        await this.zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ mode: 1 }).catch(this.error);
-      } catch (err) {
-        this.error('failed to write mode attributes', err);
-      }
-    }
-  }
-
-  async initSettings() {
-    try {
-      const attrs = await Util.wrapAsyncWithRetry(() => this.zclNode.endpoints[this.getClusterEndpoint(AqaraManufacturerSpecificCluster)].clusters[AqaraManufacturerSpecificCluster.NAME].readAttributes(['aqaraCurtainReverse', 'aqaraCurtainOperatingSpeed']), 3).catch(this.error);
-      if (attrs) {
-        const { aqaraCurtainReverse, aqaraCurtainOperatingSpeed } = attrs;
-
-        if (aqaraCurtainReverse) {
-          await this.setSettings({ reverse_direction: aqaraCurtainReverse }).catch(this.error);
-          this.log(`ReadAttributes during onInit: reverse_direction ${aqaraCurtainReverse}`);
-        }
-        if (aqaraCurtainOperatingSpeed) {
-          await this.setSettings({ curtain_operating_speed: String(aqaraCurtainOperatingSpeed) }).catch(this.error);
-          this.log(`ReadAttributes during onInit: curtain_operating_speed ${String(aqaraCurtainOperatingSpeed)}`);
-        }
-      }
-    } catch (err) {
-      this.log('could not read Attribute AqaraManufacturerSpecificCluster:', err);
-    }
   }
 
   onEndDeviceAnnounce() {
@@ -108,13 +92,8 @@ class AqaraE1RollerShadeCompanion extends ZigBeeDevice {
     }
     // get position when motor is paused of blocked
     if (data >= 2) {
-      const attrs = await Util.wrapAsyncWithRetry(() => this.zclNode.endpoints[1].clusters[CLUSTER.ANALOG_OUTPUT.NAME].readAttributes(['presentValue']), 3).catch(this.error);
-      if (attrs) {
-        const { presentValue } = attrs;
-        if (presentValue) {
-          this.onCurtainPositionAttrReport(presentValue);
-        }
-      }
+      const { presentValue } = await this.zclNode.endpoints[1].clusters[CLUSTER.ANALOG_OUTPUT.NAME].readAttributes('presentValue').catch(this.error);
+      this.onCurtainPositionAttrReport(presentValue);
     }
   }
 

@@ -25,7 +25,13 @@ class AqaraH1WallSwitchSingleLN extends ZigBeeDevice {
     // print the node's info to the console
     // this.printNode();
 
-    this.initAqaraMode();
+    if (this.isFirstInit()) {
+      try {
+        await zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ mode: 1 }); // , aqaraRemoteMode: 2
+      } catch (err) {
+        this.error('failed to write mode attributes', err);
+      }
+    }
 
     // Register capabilities and reportListeners for Left or Right switch
     if (this.hasCapability('onoff')) {
@@ -74,17 +80,6 @@ class AqaraH1WallSwitchSingleLN extends ZigBeeDevice {
     // Register the AttributeReportListener - Lifeline
     zclNode.endpoints[this.getClusterEndpoint(AqaraManufacturerSpecificCluster)].clusters[AqaraManufacturerSpecificCluster.NAME]
       .on('attr.aqaraLifeline', this.onAqaraLifelineAttributeReport.bind(this));
-  }
-
-  async initAqaraMode() {
-    // Set Aqara Opple mode to 1 to force sending messages
-    if (this.isFirstInit()) {
-      try {
-        await this.zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ mode: 1 });
-      } catch (err) {
-        this.error('failed to write mode attributes', err);
-      }
-    }
   }
 
   onMSIPresentValueAttributeReport(reportingClusterName, reportingAttribute, button, presentValue) {

@@ -25,7 +25,15 @@ class XiaomiSmartPlugEU extends ZigBeeDevice {
     // print the node's info to the console
     // this.printNode();
 
-    this.initSettings();
+    try {
+      const {
+        aqaraLedDisabled, aqaraPowerOutageMemory, aqaraPowerOffMemory, aqaraMaximumPower,
+      } = await zclNode.endpoints[this.getClusterEndpoint(AqaraManufacturerSpecificCluster)].clusters[AqaraManufacturerSpecificCluster.NAME].readAttributes('aqaraLedDisabled', 'aqaraPowerOutageMemory', 'aqaraPowerOffMemory', 'aqaraMaximumPower');
+      this.log('READattributes options', aqaraLedDisabled, aqaraPowerOutageMemory, aqaraPowerOffMemory, aqaraMaximumPower);
+      await this.setSettings({ save_state: aqaraPowerOutageMemory });
+    } catch (err) {
+      this.log('could not read Attribute xiaomiSwitchOptions:', err);
+    }
 
     if (this.hasCapability('onoff')) {
       this.registerCapability('onoff', CLUSTER.ON_OFF, {
@@ -73,18 +81,6 @@ class XiaomiSmartPlugEU extends ZigBeeDevice {
       .on('attr.aqaraLifeline', this.onAqaraLifelineAttributeReport.bind(this));
   }
 
-  async initSettings() {
-    try {
-      const {
-        aqaraLedDisabled, aqaraPowerOutageMemory, aqaraPowerOffMemory, aqaraMaximumPower,
-      } = await this.zclNode.endpoints[this.getClusterEndpoint(AqaraManufacturerSpecificCluster)].clusters[AqaraManufacturerSpecificCluster.NAME].readAttributes(['aqaraLedDisabled', 'aqaraPowerOutageMemory', 'aqaraPowerOffMemory', 'aqaraMaximumPower']).catch(this.error);
-      this.log('READattributes options, aqaraLedDisabled:', aqaraLedDisabled, 'aqaraPowerOutageMemory:', aqaraPowerOutageMemory, 'aqaraPowerOffMemory:', aqaraPowerOffMemory, 'aqaraMaximumPower:', aqaraMaximumPower);
-      await this.setSettings({ save_state: aqaraPowerOutageMemory });
-    } catch (err) {
-      this.log('could not read Attribute xiaomiSwitchOptions:', err);
-    }
-  }
-
   /**
    * This is Xiaomi's custom lifeline attribute, it contains a lot of data, af which the most
    * interesting the battery level. The battery level divided by 1000 represents the battery
@@ -93,25 +89,14 @@ class XiaomiSmartPlugEU extends ZigBeeDevice {
    * @param {{batteryLevel: number}} lifeline
    */
   onAqaraLifelineAttributeReport({
-    state, consumption, power,
+    state,
   } = {}) {
     this.log('lifeline attribute report', {
-      state, consumption, power,
+      state,
     });
 
     if (typeof state === 'number') {
-      this.log('handle report (cluster: aqaraLifeline, capability: onoff), parsed payload:', state === 1);
       this.setCapabilityValue('onoff', state === 1).catch(this.error);
-    }
-
-    if (typeof consumption === 'number') {
-      this.log('handle report (cluster: aqaraLifeline, capability: meter_power), parsed payload:', consumption);
-      this.setCapabilityValue('meter_power', consumption).catch(this.error);
-    }
-
-    if (typeof power === 'number') {
-      this.log('handle report (cluster: aqaraLifeline, capability: measure_power), parsed payload:', power);
-      this.setCapabilityValue('measure_power', power).catch(this.error);
     }
   }
 
@@ -128,38 +113,6 @@ class XiaomiSmartPlugEU extends ZigBeeDevice {
 
 module.exports = XiaomiSmartPlugEU;
 /*
-00 01 c0 fc 04 01 01 5e 1c 5f 11 74 0a f7 00 41
-3d
-
-64 10 01
-03 28 18
-98 39 ba 49 f3 41
-95 39 b4 c7 d1 40
-96 39 00 20 0f 45
-97 39 93 cc 04 43
-05 21 01 00
-9a 20 10
-08 21 16 01
-07 27 00 00 00 00 00 00 00 00
-09 21 00 04
-0b 20 00
-9b 10 01
-
-00 01 c0 fc
-04 01 01 03 1c 5f 11 6c 0a f7 00 41 3d
-05 21 01 00
-64 10 01 03 28 18
-95 39 ec a7 d1 40
-96 39 00 20 0f 45
-97 39 93 cc 04 43
-98 39 ba 49 f3 41
-9a 20 10
-08 21 16 01
-07 27 00 00 00 00 00 00 00 00
-09 21 00
-04 0b 20 00
-9b 10 01
-
 2020-02-25 20:33:25 [log] [ManagerDrivers] [plug.mmeu01] [0] ------------------------------------------
 2020-02-25 20:33:25 [log] [ManagerDrivers] [plug.mmeu01] [0] Node: ffabe1c8-373b-4974-9d5f-37f9c63bd2be
 2020-02-25 20:33:25 [log] [ManagerDrivers] [plug.mmeu01] [0] - Battery: false

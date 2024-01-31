@@ -8,10 +8,10 @@ const { ZigBeeDevice, Util } = require('homey-zigbeedriver');
 const { debug, Cluster, CLUSTER } = require('zigbee-clusters');
 
 const AqaraManufacturerSpecificCluster = require('../../lib/AqaraManufacturerSpecificCluster');
-// const AqaraSpecificWindowCoveringCluster = require('../../lib/AqaraSpecificWindowCoveringCluster');
+const AqaraSpecificWindowCoveringCluster = require('../../lib/AqaraSpecificWindowCoveringCluster');
 
 Cluster.addCluster(AqaraManufacturerSpecificCluster);
-// Cluster.addCluster(AqaraSpecificWindowCoveringCluster);
+Cluster.addCluster(AqaraSpecificWindowCoveringCluster);
 
 class AqaraCurtainDriverE1 extends ZigBeeDevice {
 
@@ -211,14 +211,15 @@ class AqaraCurtainDriverE1 extends ZigBeeDevice {
     this.log('lifeline attribute report', {
       state, state1,
     });
-    if (typeof state === 'number') {
-    //  const parsedDim = (state / 100);
-    //  this.log('onAqaraLifelineAttributeReport - windowcoverings_set', parsedDim);
-    //  this.setCapabilityValue('windowcoverings_set', parsedDim).catch(this.error);
+    // Postion
+    if (typeof state === 'number' && state <= 100) {
+      const parsedDim = (state / 100);
+      this.log('onAqaraLifelineAttributeReport - windowcoverings_set', parsedDim);
+      this.setCapabilityValue('windowcoverings_set', parsedDim).catch(this.error);
     }
     // Battery
     if (typeof state1 === 'number') {
-      // this.onBatteryPercentageAttributeReport('AqaraLifeline', 'state1', state1);
+      this.onBatteryPercentageAttributeReport('AqaraLifeline', 'state1', state1);
     }
   }
 
@@ -254,12 +255,8 @@ class AqaraCurtainDriverE1 extends ZigBeeDevice {
     this.log('MaintenanceAction | Auto calibration - start');
 
     this.debug('MaintenanceAction | Auto calibration - checking hook status');
-    const attrs = await Util.wrapAsyncWithRetry(() => this.zclNode.endpoints[this.getClusterEndpoint(AqaraManufacturerSpecificCluster)].clusters[AqaraManufacturerSpecificCluster.NAME]
-      .readAttributes(['aqaraCurtainHookState']), 3).catch(this.error);
-    if (attrs) {
-      const { aqaraCurtainHookState } = attrs;
-    }
-
+    const { aqaraCurtainHookState } = await Util.wrapAsyncWithRetry(() => this.zclNode.endpoints[this.getClusterEndpoint(AqaraManufacturerSpecificCluster)].clusters[AqaraManufacturerSpecificCluster.NAME]
+      .readAttributes('aqaraCurtainHookState'), 3);
     if (aqaraCurtainHookState !== 1) throw new Error('Curtain driver not fully locked, lock first');
 
     this.autoCalibrationInProgress = 1;

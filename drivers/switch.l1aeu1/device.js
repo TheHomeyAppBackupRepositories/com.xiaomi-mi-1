@@ -30,7 +30,13 @@ class AqaraH1WallSwitchSingleL extends ZigBeeDevice {
 
     this._nextTrxSeqNr = 0;
 
-    this.initAqaraMode();
+    if (this.isFirstInit()) {
+      try {
+        await zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ mode: 1 }); // , aqaraRemoteMode: 2
+      } catch (err) {
+        this.error('failed to write mode attributes', err);
+      }
+    }
 
     // Register capabilities and reportListeners for Left or Right switch
     if (this.hasCapability('onoff')) {
@@ -72,17 +78,6 @@ class AqaraH1WallSwitchSingleL extends ZigBeeDevice {
 
     zclNode.endpoints[41].clusters[CLUSTER.MULTI_STATE_INPUT.NAME]
       .on('attr.presentValue', this.onPresentValueAttributeReport.bind(this, CLUSTER.MULTI_STATE_INPUT.NAME, 'presentValue'));
-  }
-
-  async initAqaraMode() {
-    // Set Aqara Opple mode to 1 to force sending messages
-    if (this.isFirstInit()) {
-      try {
-        await this.zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ mode: 1 });
-      } catch (err) {
-        this.error('failed to write mode attributes', err);
-      }
-    }
   }
 
   onOnOffAttributeReport(reportingClusterName, reportingAttribute, onOff) {

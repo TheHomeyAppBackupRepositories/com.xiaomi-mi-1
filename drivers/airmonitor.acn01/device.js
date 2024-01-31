@@ -121,7 +121,7 @@ class AqaraAirQualityMonitor extends ZigBeeDevice {
     const VOC_alarm_threshold = this.getSetting('VOC_alarm_threshold') || 220;
     const VOCalarm = parsedValue > VOC_alarm_threshold;
 
-    // const { AirQualityLevelRead } = await this.zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].readAttributes(['aqaraVOCLevels']).catch(this.error);
+    // const { AirQualityLevelRead } = await this.zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].readAttributes('aqaraVOCLevels');
     // this.log('measure_VOC | DPManufacturerSpecificCluster - measuredValue (VOC):', parsedValue, 'Air Quality Level:', AirQualityLevel, AirQualityLevelRead, 'alarm_VOC:', VOCalarm);
     this.log(`handle report (cluster: ${reportingClusterName}, attribute: ${reportingAttribute}, capability: measure_VOC), parsed payload:`, parsedValue);
     this.setCapabilityValue('measure_VOC', parsedValue).catch(this.error);

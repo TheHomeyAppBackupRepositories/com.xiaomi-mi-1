@@ -72,7 +72,7 @@ class AqaraRollerShadeMotor extends ZigBeeDevice {
     }
     // get position when motor is paused of blocked
     if (data === 0) {
-      const { presentValue } = await this.zclNode.endpoints[1].clusters[CLUSTER.ANALOG_OUTPUT.NAME].readAttributes(['presentValue']).catch(this.error);
+      const { presentValue } = await this.zclNode.endpoints[1].clusters[CLUSTER.ANALOG_OUTPUT.NAME].readAttributes('presentValue').catch(this.error);
       this.onCurtainPositionAttrReport(presentValue);
     }
   }
