@@ -24,14 +24,7 @@ class AqaraRemoteb686opcn01 extends ZigBeeDevice {
     // print the node's info to the console
     // this.printNode();
 
-    // Set Aqara Opple mode to 1 to force sending MULTI_STATE_INPUT messages
-    if (this.isFirstInit()) {
-      try {
-        await zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ mode: 1 });
-      } catch (err) {
-        this.error('failed to read  attributes', err);
-      }
-    }
+    this.initAqaraMode();
 
     // supported scenes and their reported attribute numbers (all based on reported data)
     this.buttonMap = {
@@ -78,6 +71,17 @@ class AqaraRemoteb686opcn01 extends ZigBeeDevice {
 
     // define and register FlowCardTriggers
     this.onButtonAutocomplete = this.onButtonAutocomplete.bind(this);
+  }
+
+  async initAqaraMode() {
+    // Set Aqara Opple mode to 1 to force sending messages
+    if (this.isFirstInit()) {
+      try {
+        await this.zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ mode: 1 });
+      } catch (err) {
+        this.error('failed to write mode attributes', err);
+      }
+    }
   }
 
   onPresentValueAttributeReport(repButton, repScene) {

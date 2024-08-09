@@ -3,6 +3,8 @@
 	"Key Pressed 2 times": "2x ingedrukt",
 	"Key Pressed 3 times": "3x ingedrukt",
 	"Key Pressed 4 times": "4x ingedrukt",
+	"Key Pressed 6 times": "4x ingedrukt",
+	"Key Pressed many times": "veelvuldig (≥ 6x) ingedrukt",
 	"Key Held Down": "Lang ingedrukt",
 	"Key Released": "Losgelaten",
 	"Shaken": "Geschud",

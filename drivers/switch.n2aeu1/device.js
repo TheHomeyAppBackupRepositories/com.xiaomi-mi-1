@@ -10,20 +10,23 @@ const {
 } = require('zigbee-clusters');
 
 const AqaraManufacturerSpecificCluster = require('../../lib/AqaraManufacturerSpecificCluster');
+const AqaraMeteringDevice = require('../../lib/AqaraMeteringDevice');
 
 Cluster.addCluster(AqaraManufacturerSpecificCluster);
 
-class AqaraH1WallSwitchDoubleLN extends ZigBeeDevice {
+class AqaraH1WallSwitchDoubleLN extends AqaraMeteringDevice {
 
   async onNodeInit({ zclNode }) {
     // enable debugging
-    // this.enableDebug();
+    this.enableDebug();
 
     // Enables debug logging in zigbee-clusters
     // debug(true);
 
     // print the node's info to the console
     // this.printNode();
+
+    this.powerMeasurementReporting = {};
 
     this.endpointIds = {
       leftSwitch: 1,
@@ -52,43 +55,7 @@ class AqaraH1WallSwitchDoubleLN extends ZigBeeDevice {
     const subDeviceId = this.isSubDevice() ? this.getData().subDeviceId : 'leftSwitch';
     this.log('Initializing', subDeviceId, 'at endpoint', this.endpointIds[subDeviceId]);
 
-    if (this.isFirstInit()) {
-      try {
-        await zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ mode: 1 }); // , aqaraRemoteMode: 2
-      } catch (err) {
-        this.error('failed to write mode attributes', err);
-      }
-    }
-
-    /*
-
-    // if (!subDeviceId ){ //}&& this.isFirstInit()) {
-    try {
-      await zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ aqaraSwitchOperationMode: false }); // , aqaraRemoteMode: 2
-    } catch (err) {
-      this.error('failed to write aqaraSwitchOperationMode attribute', err);
-    }
-    try {
-      await zclNode.endpoints[2].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ aqaraSwitchOperationMode: true }); // , aqaraRemoteMode: 2
-    } catch (err) {
-      this.error('failed to write aqaraSwitchOperationMode attribute', err);
-    }
-
-    try {
-      await zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ aqaraLedInverted: 1, aqaraLedDisabled: false }); // , aqaraRemoteMode: 2
-    } catch (err) {
-      this.error('failed to write aqaraSwitchOperationMode attribute', err);
-    }
-    //  }
-
-    try {
-      const { aqaraLedDisabled, aqaraPowerOutageMemory } = await zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].readAttributes('aqaraLedDisabled', 'aqaraPowerOutageMemory');
-      this.log('READattributes aqaraLedDisabled', aqaraLedDisabled, 'aqaraPowerOutageMemory', aqaraPowerOutageMemory);
-      // await this.setSettings({ reverse_direction: xiaomiCurtainReverse, open_close_manual: !xiaomiCurtainOpenCloseManual });
-    } catch (err) {
-      this.log('could not read Attribute XiaomiBasicCluster:', err);
-    }
-    */
+    this.initAqaraMode();
 
     // Register capabilities and reportListeners for Left or Right switch
     if (this.hasCapability('onoff')) {
@@ -103,35 +70,6 @@ class AqaraH1WallSwitchDoubleLN extends ZigBeeDevice {
 
     // Register measure_power and meter_power capabilities and reportListeners only for main device
     if (!this.isSubDevice()) {
-      // measure_power
-      if (this.hasCapability('measure_power')) {
-        this.registerCapability('measure_power', CLUSTER.ANALOG_INPUT, {
-          get: 'presentValue',
-          getOpts: {
-            getOnStart: true,
-          },
-          report: 'presentValue',
-          reportParser(value) {
-            return value;
-          },
-          endpoint: 21,
-        });
-      }
-
-      if (this.hasCapability('meter_power')) {
-        this.registerCapability('meter_power', CLUSTER.ANALOG_INPUT, {
-          get: 'presentValue',
-          getOpts: {
-            getOnStart: true,
-          },
-          report: 'presentValue',
-          reportParser(value) {
-            return value;
-          },
-          endpoint: 31,
-        });
-      }
-
       zclNode.endpoints[41].clusters[CLUSTER.MULTI_STATE_INPUT.NAME]
         .on('attr.presentValue', this.onMSIPresentValueAttributeReport.bind(this, CLUSTER.MULTI_STATE_INPUT.NAME, 'presentValue', 'left'));
       zclNode.endpoints[42].clusters[CLUSTER.MULTI_STATE_INPUT.NAME]
@@ -142,6 +80,19 @@ class AqaraH1WallSwitchDoubleLN extends ZigBeeDevice {
     // Register the AttributeReportListener - Lifeline
     zclNode.endpoints[this.getClusterEndpoint(AqaraManufacturerSpecificCluster)].clusters[AqaraManufacturerSpecificCluster.NAME]
       .on('attr.aqaraLifeline', this.onAqaraLifelineAttributeReport.bind(this));
+
+    await super.onNodeInit({ zclNode });
+  }
+
+  async initAqaraMode() {
+    // Set Aqara Opple mode to 1 to force sending messages
+    if (this.isFirstInit()) {
+      try {
+        await this.zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ mode: 1 });
+      } catch (err) {
+        this.error('failed to write mode attributes', err);
+      }
+    }
   }
 
   onMSIPresentValueAttributeReport(reportingClusterName, reportingAttribute, button, presentValue) {
@@ -170,8 +121,9 @@ class AqaraH1WallSwitchDoubleLN extends ZigBeeDevice {
         this.setCapabilityValue('onoff', state).catch(this.error);
       }
       if (this.hasCapability('measure_power') && typeof power === 'number') {
-        this.log('handle report (cluster: aqaraLifeline, capability: measure_power), parsed payload:', power);
-        this.setCapabilityValue('measure_power', power).catch(this.error);
+        this.updatePowerMeasurement(power, 'aqaraLifeline');
+        // this.log('handle report (cluster: aqaraLifeline, capability: measure_power), parsed payload:', power);
+        // this.setCapabilityValue('measure_power', power).catch(this.error);
       }
       if (this.hasCapability('meter_power') && typeof consumption === 'number') {
         this.log('handle report (cluster: aqaraLifeline, capability: meter_power), parsed payload:', consumption);

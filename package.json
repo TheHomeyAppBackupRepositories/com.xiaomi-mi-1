@@ -6,9 +6,9 @@
 	"dependencies": {
 		"git-branch": "^1.0.0",
 		"homey-log-to-file": "github:robertklep/homey-log-to-file",
-		"homey-zigbeedriver": "^1.6.10",
-		"homey-zwavedriver": "^1.0.4",
-		"zigbee-clusters": "^1.4.1"
+		"homey-zigbeedriver": "^2.1.4",
+		"moment-timezone": "^0.5.43",
+		"zigbee-clusters": "^2.4.0"
 	},
 	"devDependencies": {
 		"eslint": "^6.8.0",

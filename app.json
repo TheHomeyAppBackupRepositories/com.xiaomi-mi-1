@@ -18,8 +18,8 @@
       "Opple"
     ]
   },
-  "version": "1.7.1",
-  "compatibility": ">=8.0.0",
+  "version": "1.9.0",
+  "compatibility": ">=10.0.6 ",
   "support": "https://community.athom.com/t/156",
   "athomForumDiscussionId": 4120,
   "homeyCommunityTopicId": 156,
@@ -122,7 +122,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=sensor_switch|sensor_switch.aq2|sensor_switch.aq3|remote.b1acn01|sensor_86sw1lu|remote.b186acn01|remote.b186acn02"
+            "filter": "driver_id=sensor_switch|sensor_switch.aq2|sensor_switch.aq3|remote.b1acn01|sensor_86sw1lu|remote.b186acn01|remote.b186acn02|remote.b1acn02"
           }
         ],
         "tokens": [
@@ -247,6 +247,55 @@
         ]
       },
       {
+        "id": "thermostat_mode_changed_to",
+        "title": {
+          "en": "Thermostat mode has changed to",
+          "nl": "Thermostaat modus is veranderd naar"
+        },
+        "titleFormatted": {
+          "en": "Thermostat mode has changed to [[mode]]",
+          "nl": "Thermostaat modus is veranderd naar [[mode]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=airrtc.agl001"
+          },
+          {
+            "name": "mode",
+            "type": "dropdown",
+            "title": {
+              "en": "Thermostat mode",
+              "nl": "Thermostaat modus"
+            },
+            "values": [
+              {
+                "id": "off",
+                "label": {
+                  "en": "Off",
+                  "nl": "Uit"
+                }
+              },
+              {
+                "id": "manual",
+                "label": {
+                  "en": "Manual",
+                  "nl": "Handmatig"
+                }
+              },
+              {
+                "id": "away",
+                "label": {
+                  "en": "Away",
+                  "nl": "Afwezig"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "trigger_button1_scene",
         "platforms": [
           "local",
@@ -271,7 +320,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=sensor_switch|sensor_switch.aq2|sensor_switch.aq3|remote.b1acn01|sensor_86sw1lu|remote.b186acn01|remote.b186acn02"
+            "filter": "driver_id=sensor_switch|sensor_switch.aq2|sensor_switch.aq3|remote.b1acn01|sensor_86sw1lu|remote.b186acn01|remote.b186acn02|remote.b1acn02"
           },
           {
             "name": "scene",
@@ -1538,6 +1587,59 @@
         ]
       },
       {
+        "id": "thermostat_change_mode",
+        "title": {
+          "en": "Set the thermostat mode",
+          "nl": "Stel de thermostaat modus in"
+        },
+        "titleFormatted": {
+          "en": "Set the thermostat mode to [[mode]]",
+          "nl": "Stel de thermostaat modus in op [[mode]]"
+        },
+        "hint": {
+          "en": "Set the thermostat mode and activate instantly",
+          "nl": "Stel de thermostaat modusin en activeer direct"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=airrtc.agl001"
+          },
+          {
+            "name": "mode",
+            "type": "dropdown",
+            "title": {
+              "en": "Thermostat mode",
+              "nl": "Thermostaat modus"
+            },
+            "values": [
+              {
+                "id": "off",
+                "label": {
+                  "en": "Off",
+                  "nl": "Uit"
+                }
+              },
+              {
+                "id": "manual",
+                "label": {
+                  "en": "Manual",
+                  "nl": "Handmatig"
+                }
+              },
+              {
+                "id": "away",
+                "label": {
+                  "en": "Away",
+                  "nl": "Afwezig"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "curtain_operating_speed",
         "title": {
           "en": "Change the curtain operating speed"
@@ -1580,6 +1682,401 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "id": "LEDStrip_audio_off",
+        "title": {
+          "en": "Turn the audio effect off",
+          "nl": "Zet het geluidseffect uit"
+        },
+        "titleFormatted": {
+          "en": "Turn the audio off",
+          "nl": "Zet het geluid uit"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=light.acn132"
+          }
+        ]
+      },
+      {
+        "id": "LEDStrip_audio_effect_set",
+        "title": {
+          "en": "Set the audio effect and turn on audio",
+          "nl": "Stel het geluidseffect in en schakel geluid in"
+        },
+        "titleFormatted": {
+          "en": "Set the audio effect to [[audio_effect]] and turn on",
+          "nl": "Stel de geluid effect in op [[audio_effect]] en schakel in"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=light.acn132"
+          },
+          {
+            "name": "audio_effect",
+            "title": {
+              "en": "Audio effect",
+              "nl": "Geluidseffect"
+            },
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "0",
+                "label": {
+                  "en": "willekeurig"
+                }
+              },
+              {
+                "id": "1",
+                "label": {
+                  "en": "blink",
+                  "nl": "knipper"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "rainbow",
+                  "nl": "regenboog"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "wave",
+                  "nl": "golf"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "LEDStrip_audio_set",
+        "title": {
+          "en": "Set the audio sensitivity and turn on",
+          "nl": "Stel de gevoeligheid van het geluid in en schakel in"
+        },
+        "titleFormatted": {
+          "en": "Set the audio on [[audio_sensitivity]] and turn on",
+          "nl": "Stel geluid in op [[audio_sensitivity]] en schakel in"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=light.acn132"
+          },
+          {
+            "name": "audio_sensitivity",
+            "title": {
+              "en": "Audio sensitivity",
+              "nl": "Geluidsgevoeligheid"
+            },
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "0",
+                "label": {
+                  "en": "low sensitivity",
+                  "nl": "lage gevoeligheid"
+                }
+              },
+              {
+                "id": "1",
+                "label": {
+                  "en": "medium sensitivity",
+                  "nl": "gemiddelde gevoeligheid"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "high sensitivity",
+                  "nl": "hoge gevoeligheid"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "LEDStrip_preset_set",
+        "title": {
+          "en": "Select the light preset and speed",
+          "nl": "Stel het lichteffect end snelheid in"
+        },
+        "titleFormatted": {
+          "en": "Set the light preset to [[preset]] with speed at [[preset_speed]]",
+          "nl": "Stel het lichteffect in op [[preset]] met snelheid op [[preset_speed]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=light.acn132"
+          },
+          {
+            "name": "preset",
+            "title": {
+              "en": "Light preset",
+              "nl": "Lichteffect"
+            },
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "0",
+                "label": {
+                  "en": "Gala"
+                }
+              },
+              {
+                "id": "1",
+                "label": {
+                  "en": "Rainbow",
+                  "nl": "Regenboog"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "Sea of Flowers",
+                  "nl": "Bloemenzee"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Heartbeat",
+                  "nl": "Hartslag"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Rythmic",
+                  "nl": "Ritmisch"
+                }
+              },
+              {
+                "id": "5",
+                "label": {
+                  "en": "Colorful",
+                  "nl": "Kleurrijk"
+                }
+              },
+              {
+                "id": "6",
+                "label": {
+                  "en": "Exciting",
+                  "nl": "Spannend"
+                }
+              },
+              {
+                "id": "7",
+                "label": {
+                  "en": "Lively",
+                  "nl": "Levendig"
+                }
+              },
+              {
+                "id": "8",
+                "label": {
+                  "en": "Custom 1",
+                  "nl": "Aangepast 1"
+                }
+              },
+              {
+                "id": "9",
+                "label": {
+                  "en": "Custom 2",
+                  "nl": "Aangepast 2"
+                }
+              },
+              {
+                "id": "10",
+                "label": {
+                  "en": "Custom 3",
+                  "nl": "Aangepast 3"
+                }
+              },
+              {
+                "id": "11",
+                "label": {
+                  "en": "Custom 4",
+                  "nl": "Aangepast 4"
+                }
+              },
+              {
+                "id": "12",
+                "label": {
+                  "en": "Custom 5",
+                  "nl": "Aangepast 5"
+                }
+              },
+              {
+                "id": "13",
+                "label": {
+                  "en": "Custom 6",
+                  "nl": "Aangepast 6"
+                }
+              },
+              {
+                "id": "14",
+                "label": {
+                  "en": "Custom 7",
+                  "nl": "Aangepast 7"
+                }
+              },
+              {
+                "id": "15",
+                "label": {
+                  "en": "Custom 8",
+                  "nl": "Aangepast 8"
+                }
+              },
+              {
+                "id": "16",
+                "label": {
+                  "en": "Custom 9",
+                  "nl": "Aangepast 9"
+                }
+              },
+              {
+                "id": "17",
+                "label": {
+                  "en": "Custom 10",
+                  "nl": "Aangepast 10"
+                }
+              },
+              {
+                "id": "18",
+                "label": {
+                  "en": "Custom 11",
+                  "nl": "Aangepast 11"
+                }
+              },
+              {
+                "id": "19",
+                "label": {
+                  "en": "Custom 12",
+                  "nl": "Aangepast 12"
+                }
+              },
+              {
+                "id": "20",
+                "label": {
+                  "en": "Custom 13",
+                  "nl": "Aangepast 13"
+                }
+              },
+              {
+                "id": "21",
+                "label": {
+                  "en": "Custom 14",
+                  "nl": "Aangepast 14"
+                }
+              },
+              {
+                "id": "22",
+                "label": {
+                  "en": "Custom 15",
+                  "nl": "Aangepast 15"
+                }
+              },
+              {
+                "id": "23",
+                "label": {
+                  "en": "Custom 16",
+                  "nl": "Aangepast 16"
+                }
+              },
+              {
+                "id": "24",
+                "label": {
+                  "en": "Custom 17",
+                  "nl": "Aangepast 17"
+                }
+              },
+              {
+                "id": "25",
+                "label": {
+                  "en": "Custom 18",
+                  "nl": "Aangepast 18"
+                }
+              },
+              {
+                "id": "26",
+                "label": {
+                  "en": "Custom 19",
+                  "nl": "Aangepast 19"
+                }
+              },
+              {
+                "id": "27",
+                "label": {
+                  "en": "Custom 20",
+                  "nl": "Aangepast 20"
+                }
+              },
+              {
+                "id": "28",
+                "label": {
+                  "en": "Custom 21",
+                  "nl": "Aangepast 21"
+                }
+              },
+              {
+                "id": "29",
+                "label": {
+                  "en": "Custom 22",
+                  "nl": "Aangepast 22"
+                }
+              },
+              {
+                "id": "30",
+                "label": {
+                  "en": "Custom 23",
+                  "nl": "Aangepast 23"
+                }
+              },
+              {
+                "id": "31",
+                "label": {
+                  "en": "Custom 24",
+                  "nl": "Aangepast 24"
+                }
+              },
+              {
+                "id": "32",
+                "label": {
+                  "en": "Custom 25",
+                  "nl": "Aangepast 25"
+                }
+              }
+            ]
+          },
+          {
+            "name": "preset_speed",
+            "title": {
+              "en": "Light preset",
+              "nl": "Lichteffect"
+            },
+            "type": "range",
+            "min": 0,
+            "max": 1,
+            "step": 0.01,
+            "value": 0.5,
+            "label": "%",
+            "labelMultiplier": 100,
+            "labelDecimals": 0
           }
         ]
       }
@@ -1769,9 +2266,193 @@
     },
     {
       "name": {
-        "en": "Aqara Smart Socket",
-        "nl": "Aqara Smart Socket",
-        "de": "Aqara Smarte Steckdose"
+        "en": "Smart Radiator Thermostat E1"
+      },
+      "_appSpecific": {
+        "brand": "Aqara",
+        "modelID": "SRTS-A01",
+        "EAN": [
+          "6970504217058"
+        ]
+      },
+      "class": "thermostat",
+      "capabilities": [
+        "measure_battery",
+        "measure_temperature",
+        "target_temperature",
+        "thermostat_mode_AqaraTRV",
+        "alarm_window",
+        "alarm_thermostat",
+        "calibration_state",
+        "child_lock",
+        "button.auto_calibration"
+      ],
+      "capabilitiesOptions": {
+        "button.auto_calibration": {
+          "maintenanceAction": true,
+          "title": {
+            "en": "Calibratie van de kraan"
+          },
+          "desc": {
+            "en": "Start auto calibration of the thermostatic crane valve.",
+            "nl": "Start de automatische kalibratie van de thermostaatkraan."
+          }
+        }
+      },
+      "energy": {
+        "batteries": [
+          "AA",
+          "AA"
+        ]
+      },
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "zigbee": {
+        "manufacturerName": "LUMI",
+        "productId": "lumi.airrtc.agl001",
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              3,
+              9,
+              10,
+              513,
+              516,
+              1026,
+              64704
+            ],
+            "bindings": [
+              1,
+              9,
+              10,
+              513,
+              516,
+              1026,
+              64704
+            ]
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/airrtc.agl001/assets/learnmode.svg",
+          "instruction": {
+            "en": "After activating the screen, long press the rotary knob button for 10 seconds until the screen icon keeps flashing.",
+            "nl": "Nadat u het scherm hebt geactiveerd, drukt u de draaiknopknop 10 seconden lang in totdat het schermpictogram blijft knipperen.",
+            "de": "Nachdem Sie den Bildschirm aktiviert haben, drücken Sie 10 Sekunden lang lange auf den Drehknopf, bis das Bildschirmsymbol weiterhin blinkt."
+          }
+        }
+      },
+      "images": {
+        "large": "/drivers/airrtc.agl001/assets/images/large.png",
+        "small": "/drivers/airrtc.agl001/assets/images/small.png"
+      },
+      "id": "airrtc.agl001",
+      "settings": [
+        {
+          "id": "temperature_offset",
+          "type": "number",
+          "label": {
+            "en": "Temperature offset",
+            "nl": "Temperatuur compensatie"
+          },
+          "hint": {
+            "en": "Set a correction to compensate a temperature offset.\nRange: -10 - 10, step size 0.1, \ndefault: 0 [°C]",
+            "nl": "Stel een correctiewaarde in om een temperature verschil te compenseren.\nBereik: -10 - 10, stap grootte 0.1, \nstandaard: 0 [°C]"
+          },
+          "value": 0,
+          "attr": {
+            "min": -10,
+            "max": 10,
+            "step": 0.1
+          },
+          "units": {
+            "en": "°C",
+            "nl": "°C"
+          }
+        },
+        {
+          "id": "temperature_decimals",
+          "type": "radio",
+          "label": {
+            "en": "Temperature reporting"
+          },
+          "value": "1",
+          "values": [
+            {
+              "id": "1",
+              "label": {
+                "en": "Report temperature value with 1 decimal (22.1 °C)"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "Report temperature value with 2 decimals (22.07 °C)"
+              }
+            }
+          ]
+        },
+        {
+          "id": "thermostat_setpoint_away",
+          "type": "number",
+          "label": {
+            "en": "Target temperature in away mode",
+            "nl": "Ingestelde temperatuur in afwezigheids modus"
+          },
+          "hint": {
+            "en": "Set the target temperature in away thermostat mode",
+            "nl": "Stel een ingestelde temperatuur in afwezigheids thermostaat modus in"
+          },
+          "value": 5,
+          "attr": {
+            "min": 5,
+            "max": 15,
+            "step": 0.5
+          },
+          "units": {
+            "en": "°C",
+            "nl": "°C"
+          }
+        },
+        {
+          "id": "open_window_detection",
+          "type": "checkbox",
+          "label": {
+            "en": "Open window detection",
+            "nl": "Open raam detectie"
+          },
+          "hint": {
+            "en": "When enabled, the thermostat will automatically close the valve for 30 minutes when a open window is detected",
+            "nl": "Wanneer ingeschakeld wordt de kraan automatisch voor 30 minuten gesloten wanneer de thermostaat kraan een open raam detecteert"
+          },
+          "value": true
+        },
+        {
+          "id": "thermostat_control_fault_detection",
+          "type": "checkbox",
+          "label": {
+            "en": "Thermostat control fault detection",
+            "nl": "Thermostat regelfout detectie"
+          },
+          "hint": {
+            "en": "When enabled, in case of a large difference between the room temperature and the set temperature for a long time during heating, the thermostat will prompt abnormal temperature control",
+            "nl": "Wanneer ingeschakeld wordt door de thermostaat bij een groot temperatuurverschil tussen de kamer- en ingestelde temperatuur voor een langere duur abnormaal temperatuur gedrag alarm geactiveerd"
+          },
+          "value": true
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Smart Socket",
+        "nl": "Smart Socket",
+        "de": "Smarte Steckdose"
       },
       "_appSpecific": {
         "brand": "Aqara",
@@ -3139,6 +3820,263 @@
       "id": "curtain.hagl04"
     },
     {
+      "id": "flood.agl02",
+      "name": {
+        "en": "Water Leak sensor T1",
+        "nl": "Waterlek sensor T1"
+      },
+      "_appSpecific": {
+        "brand": "Aqara",
+        "modelID": "WL-S02D",
+        "EAN": [
+          "6975833352142"
+        ]
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_water",
+        "measure_battery"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2032"
+        ]
+      },
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "zigbee": {
+        "manufacturerName": "LUMI",
+        "productId": "lumi.flood.agl02",
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              3,
+              12,
+              18,
+              25,
+              1280,
+              64704
+            ],
+            "bindings": [
+              1280,
+              64704
+            ]
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/flood.agl02/assets/learn.svg",
+          "instruction": {
+            "en": "Pinch the sensor for 5 seconds until the blue light flashes continuously",
+            "nl": "Pinch the sensor for 5 seconds until the blue light flashes continuously"
+          }
+        }
+      },
+      "images": {
+        "large": "/drivers/flood.agl02/assets/images/large.png",
+        "small": "/drivers/flood.agl02/assets/images/small.png"
+      },
+      "settings": []
+    },
+    {
+      "name": {
+        "en": "LED Strip T1"
+      },
+      "class": "light",
+      "_appSpecific": {
+        "brand": "Aqara",
+        "modelID": "RLS-K02D",
+        "EAN": "6975833350933"
+      },
+      "capabilities": [
+        "onoff",
+        "dim",
+        "light_saturation",
+        "light_temperature",
+        "light_hue",
+        "light_mode",
+        "LEDstrip_audio",
+        "LEDstrip_audio_effect",
+        "LEDstrip_preset",
+        "LEDstrip_preset_speed"
+      ],
+      "energy": {
+        "approximation": {
+          "usageOn": 9,
+          "usageOff": 0
+        }
+      },
+      "capabilitiesOptions": {
+        "dim": {
+          "opts": {
+            "duration": true
+          }
+        },
+        "onoff": {
+          "setOnDim": false
+        },
+        "light_temperature": {
+          "opts": {
+            "duration": true
+          }
+        }
+      },
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "zigbee": {
+        "manufacturerName": [
+          "LUMI",
+          "Aqara"
+        ],
+        "productId": "lumi.light.acn132",
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              3,
+              4,
+              5,
+              6,
+              8,
+              10,
+              25,
+              768,
+              64704
+            ],
+            "bindings": [
+              6,
+              8,
+              768,
+              64704
+            ]
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/light.acn132/assets/learn_ledstrip.svg",
+          "instruction": {
+            "en": "Turn on the LED strip. Long press the on/off button for more than 5 seconds",
+            "nl": "Schakel de LED strip in. Houd de reset knop ingedrukt voor meer dan 3 seconden."
+          }
+        }
+      },
+      "images": {
+        "xlarge": "/drivers/light.acn132/assets/images/xlarge.png",
+        "large": "/drivers/light.acn132/assets/images/large.png",
+        "small": "/drivers/light.acn132/assets/images/small.png"
+      },
+      "settings": [
+        {
+          "id": "LEDStrip_length",
+          "type": "number",
+          "label": {
+            "en": "LED strip length",
+            "nl": "LED strip lengte"
+          },
+          "hint": {
+            "en": "Length of the LED strip (in sections of 20 cm)",
+            "nl": "Lengte van de LED stip (in delen van 20 cm)"
+          },
+          "value": 2,
+          "attr": {
+            "min": 1,
+            "max": 10,
+            "step": 0.2
+          },
+          "units": {
+            "en": "m"
+          }
+        },
+        {
+          "id": "LEDStrip_min_brightness",
+          "type": "number",
+          "label": {
+            "en": "Minimum brightness",
+            "nl": "Minimale helderheid"
+          },
+          "value": 0,
+          "attr": {
+            "min": 0,
+            "max": 99,
+            "step": 1
+          },
+          "units": {
+            "en": "%"
+          }
+        },
+        {
+          "id": "LEDStrip_max_brightness",
+          "type": "number",
+          "label": {
+            "en": "Maximum brightness",
+            "nl": "Maximale helderheid"
+          },
+          "value": 100,
+          "attr": {
+            "min": 1,
+            "max": 100,
+            "step": 1
+          },
+          "units": {
+            "en": "%"
+          }
+        },
+        {
+          "id": "on_transition_time",
+          "type": "number",
+          "label": {
+            "en": "On transision time",
+            "nl": "Inschakel transitie tijd"
+          },
+          "hint": {
+            "en": "Transition duration from minimum value to maximum value when a ON command is received",
+            "nl": "Overgangsduur van minimumwaarde naar maximumwaarde bij ontvangst van een AAN-commando"
+          },
+          "value": 2,
+          "attr": {
+            "min": 0,
+            "max": 6000,
+            "step": 0.1
+          },
+          "units": {
+            "en": "s"
+          }
+        },
+        {
+          "id": "off_transition_time",
+          "type": "number",
+          "label": {
+            "en": "Off transision time",
+            "nl": "Uitschakel transitie tijd"
+          },
+          "hint": {
+            "en": "Transition duration from maximum value to minimum value when a OFF command is received",
+            "nl": "Overgangsduur van maximale waarde naar minimale waarde bij ontvangst van een UIT-commando"
+          },
+          "value": 2,
+          "attr": {
+            "min": 0,
+            "max": 6000,
+            "step": 0.1
+          },
+          "units": {
+            "en": "s"
+          }
+        }
+      ],
+      "id": "light.acn132"
+    },
+    {
       "name": {
         "en": "LED Bulb"
       },
@@ -3236,6 +4174,92 @@
         }
       ],
       "id": "light.aqcn02"
+    },
+    {
+      "name": {
+        "en": "Door and Window Sensor T1",
+        "nl": "Deur en Raam Sensor T1"
+      },
+      "class": "sensor",
+      "_appSpecific": {
+        "brand": "Aqara",
+        "modelID": "DW-S03D",
+        "EAN": [
+          "6975833352135"
+        ]
+      },
+      "capabilities": [
+        "alarm_contact",
+        "measure_battery"
+      ],
+      "energy": {
+        "batteries": [
+          "CR1632"
+        ]
+      },
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "zigbee": {
+        "manufacturerName": "LUMI",
+        "productId": "lumi.magnet.agl02",
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              6,
+              1280,
+              64704
+            ],
+            "bindings": [
+              6,
+              1280,
+              64704
+            ]
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/magnet.agl02/assets/learn_door.svg",
+          "instruction": {
+            "en": "Hold the sensor during inclusion in close proximity of Homey\nLong press the reset button for more than 3 seconds until the blue light flashes three times",
+            "nl": "Houd tijdens het toevoegen de sensor in de buurt van Homey. Druk op de reset knop totdat de blauwe led drie keer knippert.",
+            "de": "Halte den Sensor nah an Homey während du ihn anlernst\nHalte den Reset Knopf mehr als 3 Sekunden bis das blaue Licht 3 mal blinkt"
+          }
+        }
+      },
+      "images": {
+        "large": "/drivers/magnet.agl02/assets/images/large.png",
+        "small": "/drivers/magnet.agl02/assets/images/small.png"
+      },
+      "id": "magnet.agl02",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Expert settings",
+            "nl": "Expert instellingen"
+          },
+          "collapsed": true,
+          "children": [
+            {
+              "id": "reverse_contact_alarm",
+              "type": "checkbox",
+              "value": false,
+              "label": {
+                "en": "Reverse contact alarm logic"
+              },
+              "hint": {
+                "en": "Reverse the contact alarm logic: magnet closed = alarm activated, magnet opened = alarm deactivated.",
+                "nl": "Keer de alarm logic om: magneet gesloten = alarm geactiveerd, magneet geopened = alarm gedeactiveerd."
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "name": {
@@ -3529,6 +4553,22 @@
               6,
               1794,
               2820
+            ]
+          },
+          "21": {
+            "clusters": [
+              12
+            ],
+            "bindings": [
+              12
+            ]
+          },
+          "31": {
+            "clusters": [
+              12
+            ],
+            "bindings": [
+              12
             ]
           }
         },
@@ -4036,6 +5076,63 @@
         "small": "/drivers/remote.b1acn01/assets/images/small.png"
       },
       "id": "remote.b1acn01"
+    },
+    {
+      "name": {
+        "en": "Wireless Mini Switch T1"
+      },
+      "class": "button",
+      "_appSpecific": {
+        "brand": "Aqara",
+        "modelID": "WB-R02D",
+        "EAN": "6975833352166"
+      },
+      "capabilities": [
+        "measure_battery"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2032"
+        ]
+      },
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "zigbee": {
+        "manufacturerName": "LUMI",
+        "productId": [
+          "lumi.remote.b1acn02"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              6,
+              18,
+              64704
+            ]
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/remote.b1acn02/assets/learn_switch.svg",
+          "instruction": {
+            "en": "Long press the reset button for more than 3 seconds until the blue light flashes three times",
+            "nl": "Houd de reset knop ingedrukt voor meer dan 3 seconden totdat de blauwe led drie keer knippert",
+            "de": "Halte den Reset Knopf mehr als 3 Sekunden bis das blaue Licht 3 mal blinkt"
+          }
+        }
+      },
+      "images": {
+        "large": "/drivers/remote.b1acn02/assets/images/large.png",
+        "small": "/drivers/remote.b1acn02/assets/images/small.png"
+      },
+      "id": "remote.b1acn02",
+      "settings": []
     },
     {
       "name": {
@@ -4858,6 +5955,183 @@
       },
       "settings": [],
       "id": "sensor_86sw2Un"
+    },
+    {
+      "name": {
+        "en": "Temperature and Humidity Sensor T1"
+      },
+      "_appSpecific": {
+        "brand": "Aqara",
+        "modelID": "TH-S02D",
+        "EAN": [
+          "6975833352159"
+        ]
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_battery",
+        "measure_temperature",
+        "measure_pressure",
+        "measure_humidity"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2032"
+        ]
+      },
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "zigbee": {
+        "manufacturerName": "LUMI",
+        "productId": "lumi.sensor_ht.agl02",
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1026,
+              1027,
+              1029,
+              64704
+            ],
+            "bindings": [
+              1026,
+              1027,
+              1029,
+              64704
+            ]
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/sensor_ht.agl02/assets/learn_weather.svg",
+          "instruction": {
+            "en": "Long press the reset button for more than 3 seconds until the blue light flashes three times",
+            "nl": "Druk op de reset knop totdat de blauwe led drie keer knippert.",
+            "de": "Halte den Reset Knopf mehr als 3 Sekunden bis das blaue Licht 3 mal blinkt"
+          }
+        }
+      },
+      "images": {
+        "large": "/drivers/sensor_ht.agl02/assets/images/large.png",
+        "small": "/drivers/sensor_ht.agl02/assets/images/small.png"
+      },
+      "id": "sensor_ht.agl02",
+      "settings": [
+        {
+          "id": "temperature_offset",
+          "type": "number",
+          "label": {
+            "en": "Temperature offset (°C)",
+            "nl": "Temperatuur compensatie (°C)"
+          },
+          "hint": {
+            "en": "Set a correction to compensate a temperature offset.\nRange: -10 - 10, step size 0.1, \ndefault: 0 [°C]",
+            "nl": "Stel een correctiewaarde in om een temperature verschil te compenseren.\nBereik: -10 - 10, stap grootte 0.1, \nstandaard: 0 [°C]"
+          },
+          "value": 0,
+          "attr": {
+            "min": -10,
+            "max": 10,
+            "step": 0.1
+          },
+          "units": {
+            "en": "°C",
+            "nl": "°C"
+          }
+        },
+        {
+          "id": "temperature_decimals",
+          "type": "radio",
+          "label": {
+            "en": "Temperature reporting"
+          },
+          "value": "1",
+          "values": [
+            {
+              "id": "1",
+              "label": {
+                "en": "Report temperature value with 1 decimal (22.1 °C)"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "Report temperature value with 2 decimals (22.07 °C)"
+              }
+            }
+          ]
+        },
+        {
+          "id": "humidity_offset",
+          "type": "number",
+          "label": {
+            "en": "Humidity offset (%)",
+            "nl": "Luchtvochtigheids compensatie (%)"
+          },
+          "hint": {
+            "en": "Set a correction to compensate a humidity offset.\nRange: -10 - 10, step size 1, \ndefault: 0 [%]",
+            "nl": "Stel een correctiewaarde in om een Luchtvochtigheids verschil te compenseren.\nBereik: -10 - 10, stap grootte 1, \nstandaard: 0 [%]"
+          },
+          "value": 0,
+          "attr": {
+            "min": -10,
+            "max": 10,
+            "step": 1
+          },
+          "units": {
+            "en": "%",
+            "nl": "%"
+          }
+        },
+        {
+          "id": "humidity_decimals",
+          "type": "radio",
+          "label": {
+            "en": "Humidity reporting"
+          },
+          "value": "1",
+          "values": [
+            {
+              "id": "1",
+              "label": {
+                "en": "Report humidity value with 1 decimal (65.3 %)"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "Report humidity value with 2 decimals (65.34 %)"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pressure_offset",
+          "type": "number",
+          "label": {
+            "en": "Pressure offset (mbar)",
+            "nl": "Druk compensatie (mbar)"
+          },
+          "hint": {
+            "en": "Set a correction to compensate a pressure offset.\nRange: -100 - 100, step size 1, \ndefault: 0 [mbar]",
+            "nl": "Stel een correctiewaarde in om een druk verschil te compenseren.\nBereik: -100 - 100, stap grootte 1, \nstandaard: 0 [mbar]"
+          },
+          "value": 0,
+          "attr": {
+            "min": -100,
+            "max": 100,
+            "step": 1
+          },
+          "units": {
+            "en": "mbar",
+            "nl": "mbar"
+          }
+        }
+      ]
     },
     {
       "name": {
@@ -5702,6 +6976,22 @@
               1794,
               2820
             ]
+          },
+          "21": {
+            "clusters": [
+              12
+            ],
+            "bindings": [
+              12
+            ]
+          },
+          "31": {
+            "clusters": [
+              12
+            ],
+            "bindings": [
+              12
+            ]
           }
         },
         "learnmode": {
@@ -5872,6 +7162,22 @@
             ],
             "bindings": [
               6
+            ]
+          },
+          "21": {
+            "clusters": [
+              12
+            ],
+            "bindings": [
+              12
+            ]
+          },
+          "31": {
+            "clusters": [
+              12
+            ],
+            "bindings": [
+              12
             ]
           }
         },
@@ -6197,9 +7503,9 @@
               "onoff"
             ],
             "name": {
-              "en": "Aqara H1 Wall Switch Double (L) - Right",
-              "nl": "Aqara H1 Wall Switch Double (L) - Rechts",
-              "de": "Aqara H1 Wall Switch Double (L) - Rechts"
+              "en": "Wall Switch H1 Double (L) - Right",
+              "nl": "Wall Switch H1 Double (L) - Rechts",
+              "de": "Wall Switch H1 Double (L) - Rechts"
             },
             "settings": []
           }
@@ -6411,6 +7717,22 @@
               1794,
               2820
             ]
+          },
+          "21": {
+            "clusters": [
+              12
+            ],
+            "bindings": [
+              12
+            ]
+          },
+          "31": {
+            "clusters": [
+              12
+            ],
+            "bindings": [
+              12
+            ]
           }
         },
         "learnmode": {
@@ -6524,11 +7846,15 @@
               5,
               6,
               18,
+              1794,
+              2820,
               64704
             ],
             "bindings": [
               6,
-              18
+              18,
+              1794,
+              2820
             ]
           },
           "21": {
@@ -6631,11 +7957,15 @@
               5,
               6,
               18,
+              1794,
+              2820,
               64704
             ],
             "bindings": [
               6,
-              18
+              18,
+              1794,
+              2820
             ]
           },
           "2": {
@@ -6814,6 +8144,22 @@
             ],
             "bindings": [
               6
+            ]
+          },
+          "21": {
+            "clusters": [
+              12
+            ],
+            "bindings": [
+              12
+            ]
+          },
+          "31": {
+            "clusters": [
+              12
+            ],
+            "bindings": [
+              12
             ]
           }
         },
@@ -7315,6 +8661,30 @@
         "nl": "Motor alarm ging uit"
       }
     },
+    "alarm_thermostat": {
+      "type": "boolean",
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/alarm_thermostat.svg",
+      "title": {
+        "en": "Thermostat alarm",
+        "nl": "Thermostaat alarm"
+      },
+      "desc": {
+        "en": "True when an abnormal temperature is detected",
+        "nl": "Gaat af wanneer een afwijkende temperatuur is gedetecteerd"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Abnormal temperature detected. Please check the thermostat",
+        "nl": "Afwijkende temperatuur gedetecteerd. Controleer de thermostaat"
+      },
+      "insightsTitleFalse": {
+        "en": "Thermostat operating in normal condition",
+        "nl": "Thermostaat werkt op normale wijze"
+      }
+    },
     "alarm_tilt": {
       "type": "boolean",
       "uiComponent": "sensor",
@@ -7337,6 +8707,30 @@
       "insightsTitleFalse": {
         "en": "Tilt alarm turned off",
         "nl": "Kantel alarm ging uit"
+      }
+    },
+    "alarm_valve": {
+      "type": "boolean",
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/alarm_valve.svg",
+      "title": {
+        "en": "Thermostat valve Alarm",
+        "nl": "Thermostaat motor alarm"
+      },
+      "desc": {
+        "en": "True when the thermostat valve is stuck or jammed",
+        "nl": "Gaat af wanneer de thermostaat motor geblokkeerd is"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Thermostat valve alarm turned on",
+        "nl": "Thermostaat motor alarm ging af"
+      },
+      "insightsTitleFalse": {
+        "en": "Thermostat valve alarm turned off",
+        "nl": "Thermostaat motor alarm ging uit"
       }
     },
     "alarm_vibration": {
@@ -7382,6 +8776,72 @@
       "setable": false,
       "uiComponent": "sensor",
       "icon": "/assets/capabilities/alarm_VOC.svg",
+      "uiQuickAction": false
+    },
+    "alarm_window": {
+      "type": "boolean",
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/alarm_window.svg",
+      "title": {
+        "en": "Open window",
+        "nl": "Open raam"
+      },
+      "desc": {
+        "en": "Open window detected",
+        "nl": "Open raam gedetecteerd"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Open window detected",
+        "nl": "Open raam gedetecteerd"
+      },
+      "insightsTitleFalse": {
+        "en": "Normal operation: no open window",
+        "nl": "Normale toestand: geen open raam"
+      }
+    },
+    "calibration_state": {
+      "type": "boolean",
+      "title": {
+        "en": "Calibrated",
+        "nl": "Gecalibreerd"
+      },
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Thermostat calve is calibrated",
+        "nl": "Thermostaatkraan is gecalibreerd"
+      },
+      "insightsTitleFalse": {
+        "en": "Valve requires calibration",
+        "nl": "Thermostaatkraan moet gecalibreerd worden"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/calibration_state.svg",
+      "uiQuickAction": false
+    },
+    "child_lock": {
+      "type": "boolean",
+      "title": {
+        "en": "Child lock",
+        "nl": "Kinderslot"
+      },
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Child lock activated",
+        "nl": "Kinderslot ingeschakeld"
+      },
+      "insightsTitleFalse": {
+        "en": "Child lock deactivated",
+        "nl": "Kinderslot uitgeschakeld"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "toggle",
+      "icon": "/assets/capabilities/child_lock.svg",
       "uiQuickAction": false
     },
     "cube_measure_rotation": {
@@ -7657,6 +9117,167 @@
         }
       ]
     },
+    "LEDstrip_audio": {
+      "title": {
+        "en": "Audio",
+        "nl": "Geluid"
+      },
+      "type": "enum",
+      "setable": true,
+      "getable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "off",
+          "title": {
+            "en": "Uitgeschakeld"
+          }
+        },
+        {
+          "id": "0",
+          "title": {
+            "en": "Low sensitivity",
+            "nl": "Lage gevoeligheid"
+          }
+        },
+        {
+          "id": "1",
+          "title": {
+            "en": "Medium sensitivity",
+            "nl": "Gemiddelde gevoeligheid"
+          }
+        },
+        {
+          "id": "2",
+          "title": {
+            "en": "High sensitivity",
+            "nl": "Hoge gevoeligheid"
+          }
+        }
+      ]
+    },
+    "LEDstrip_audio_effect": {
+      "title": {
+        "en": "Audio effect",
+        "nl": "Geluidseffect"
+      },
+      "type": "enum",
+      "setable": true,
+      "getable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "0",
+          "title": {
+            "en": "Willekeurig"
+          }
+        },
+        {
+          "id": "1",
+          "title": {
+            "en": "Blink",
+            "nl": "Knipper"
+          }
+        },
+        {
+          "id": "2",
+          "title": {
+            "en": "Rainbow",
+            "nl": "Regenboog"
+          }
+        },
+        {
+          "id": "3",
+          "title": {
+            "en": "Wave",
+            "nl": "Golf"
+          }
+        }
+      ]
+    },
+    "LEDstrip_preset": {
+      "title": {
+        "en": "Light preset",
+        "nl": "Lichteffect"
+      },
+      "type": "enum",
+      "setable": true,
+      "getable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "0",
+          "title": {
+            "en": "Gala"
+          }
+        },
+        {
+          "id": "1",
+          "title": {
+            "en": "Rainbow",
+            "nl": "Regenboog"
+          }
+        },
+        {
+          "id": "2",
+          "title": {
+            "en": "Sea of Flowers",
+            "nl": "Bloemenzee"
+          }
+        },
+        {
+          "id": "3",
+          "title": {
+            "en": "Heartbeat",
+            "nl": "Hartslag"
+          }
+        },
+        {
+          "id": "4",
+          "title": {
+            "en": "Rythmic",
+            "nl": "Ritmisch"
+          }
+        },
+        {
+          "id": "5",
+          "title": {
+            "en": "Colorful",
+            "nl": "Kleurrijk"
+          }
+        },
+        {
+          "id": "6",
+          "title": {
+            "en": "Exciting",
+            "nl": "Spannend"
+          }
+        },
+        {
+          "id": "7",
+          "title": {
+            "en": "Lively",
+            "nl": "Levendig"
+          }
+        }
+      ]
+    },
+    "LEDstrip_preset_speed": {
+      "type": "number",
+      "uiComponent": "slider",
+      "title": {
+        "en": "Preset speed",
+        "nl": "Effect snelheid"
+      },
+      "getable": true,
+      "setable": true,
+      "insights": true,
+      "chartType": "stepLine",
+      "min": 0,
+      "max": 1,
+      "decimals": 2,
+      "units": "%"
+    },
     "measure_AirQualityLevel": {
       "type": "enum",
       "uiComponent": "sensor",
@@ -7835,6 +9456,38 @@
         }
       ]
     },
+    "thermostat_mode_AqaraTRV": {
+      "title": {
+        "en": "Thermostat Mode"
+      },
+      "type": "enum",
+      "setable": true,
+      "getable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "off",
+          "title": {
+            "en": "Off",
+            "nl": "Uit"
+          }
+        },
+        {
+          "id": "manual",
+          "title": {
+            "en": "Manual",
+            "nl": "Handmatig"
+          }
+        },
+        {
+          "id": "away",
+          "title": {
+            "en": "Away",
+            "nl": "Afwezig"
+          }
+        }
+      ]
+    },
     "trigger_interval": {
       "type": "number",
       "uiComponent": "sensor",
@@ -7851,6 +9504,27 @@
       "decimals": 2,
       "min": 1,
       "max": 200
+    },
+    "valve_state": {
+      "type": "boolean",
+      "title": {
+        "en": "Valve state",
+        "nl": "Thermostaatkraan toestand"
+      },
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Valve state OK",
+        "nl": "Thermostaatkraan toestand OK"
+      },
+      "insightsTitleFalse": {
+        "en": "Valve state NOK",
+        "nl": "Thermostaatkraan toestand NOK"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/valve_state.svg",
+      "uiQuickAction": false
     }
   }
 }

@@ -1,0 +1,358 @@
+[
+
+  "ids": {
+    "modelId": "lumi.magnet.agl02",
+    "manufacturerName": ""
+  },
+  "endpoints": {
+    "ieeeAddress": "54:ef:44:10:00:85:03:83",
+    "networkAddress": 65318,
+    "modelId": "lumi.magnet.agl02",
+    "manufacturerName": "LUMI",
+    "endpointDescriptors": [
+      {
+        "status": "SUCCESS",
+        "nwkAddrOfInterest": 65318,
+        "_reserved": 18,
+        "endpointId": 1,
+        "applicationProfileId": 260,
+        "applicationDeviceId": 1026,
+        "applicationDeviceVersion": 0,
+        "_reserved1": 1,
+        "inputClusters": [
+          0,
+          3,
+          1280,
+          1
+        ],
+        "outputClusters": [
+          25
+        ]
+      }
+    ],
+    "deviceType": "enddevice",
+    "receiveWhenIdle": false,
+    "swBuildId": "2019",
+    "capabilities": {
+      "alternatePANCoordinator": false,
+      "deviceType": false,
+      "powerSourceMains": false,
+      "receiveWhenIdle": false,
+      "security": false,
+      "allocateAddress": true
+    },
+    "extendedEndpointDescriptors": {
+      "1": {
+        "clusters": {
+          "basic": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 0,
+                "name": "zclVersion",
+                "value": 3
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 1,
+                "name": "appVersion",
+                "value": 30
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 2,
+                "name": "stackVersion",
+                "value": 2
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 3,
+                "name": "hwVersion",
+                "value": 1
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 4,
+                "name": "manufacturerName",
+                "value": "LUMI"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 5,
+                "name": "modelId",
+                "value": "lumi.magnet.agl02"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 6,
+                "name": "dateCode"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 7,
+                "name": "powerSource",
+                "value": "battery"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 8,
+                "name": "appProfileVersion"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 9
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 10
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 11
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 13
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 16384,
+                "name": "swBuildId",
+                "value": "2019"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [],
+            "commandsReceived": [
+              "factoryReset"
+            ]
+          },
+          "identify": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 0,
+                "name": "identifyTime",
+                "value": 0
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [
+              "identifyQuery.response"
+            ],
+            "commandsReceived": [
+              "identify",
+              "identifyQuery",
+              "triggerEffect"
+            ]
+          },
+          "iasZone": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 0,
+                "name": "zoneState",
+                "value": "notEnrolled"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 1,
+                "name": "zoneType",
+                "value": "contactSwitch"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 2,
+                "name": "zoneStatus",
+                "value": {
+                  "type": "Buffer",
+                  "data": [
+                    32,
+                    0
+                  ]
+                }
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 16,
+                "name": "iasCIEAddress",
+                "value": "a4:9e:69:ff:fe:17:9f:59"
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 17,
+                "name": "zoneId",
+                "value": 255
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [
+              "zoneEnrollResponse",
+              "initiateNormalOperationMode"
+            ],
+            "commandsReceived": [
+              "zoneEnrollResponse"
+            ]
+          },
+          "powerConfiguration": {
+            "attributes": [
+              {
+                "acl": [
+                  "readable",
+                  "reportable"
+                ],
+                "id": 32,
+                "name": "batteryVoltage",
+                "value": 30,
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 49,
+                "name": "batterySize",
+                "value": "CR2"
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 51,
+                "name": "batteryQuantity",
+                "value": 1
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 52,
+                "name": "batteryRatedVoltage",
+                "value": 30
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 53
+              },
+              {
+                "acl": [
+                  "readable",
+                  "writable"
+                ],
+                "id": 54,
+                "name": "batteryVoltageMinThreshold",
+                "value": 27
+              },
+              {
+                "acl": [
+                  "readable",
+                  "reportable"
+                ],
+                "id": 62,
+                "name": "batteryAlarmState",
+                "value": {
+                  "type": "Buffer",
+                  "data": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                "reportingConfiguration": {
+                  "status": "UNREPORTABLE_ATTRIBUTE",
+                  "direction": "reported"
+                }
+              },
+              {
+                "acl": [
+                  "readable"
+                ],
+                "id": 65533,
+                "name": "clusterRevision",
+                "value": 1
+              }
+            ],
+            "commandsGenerated": [],
+            "commandsReceived": []
+          }
+        },
+        "bindings": {
+          "ota": {}
+        }
+      }
+    }
+  }
+]

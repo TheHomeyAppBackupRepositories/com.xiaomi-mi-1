@@ -10,10 +10,11 @@ const {
 } = require('zigbee-clusters');
 
 const AqaraManufacturerSpecificCluster = require('../../lib/AqaraManufacturerSpecificCluster');
+const AqaraMeteringDevice = require('../../lib/AqaraMeteringDevice');
 
 Cluster.addCluster(AqaraManufacturerSpecificCluster);
 
-class AqaraD1WallSwitchTripleLN extends ZigBeeDevice {
+class AqaraD1WallSwitchTripleLN extends AqaraMeteringDevice {
 
   async onNodeInit({ zclNode }) {
     // enable debugging
@@ -25,14 +26,7 @@ class AqaraD1WallSwitchTripleLN extends ZigBeeDevice {
     // print the node's info to the console
     // this.printNode();
 
-    // Set Aqara Opple mode to 1
-    if (this.isFirstInit()) {
-      try {
-        await zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ mode: 1 }); // , aqaraRemoteMode: 2
-      } catch (err) {
-        this.error('failed to write mode attributes', err);
-      }
-    }
+    this.powerMeasurementReporting = {};
 
     this.endpointIds = {
       leftSwitch: 1,
@@ -51,69 +45,17 @@ class AqaraD1WallSwitchTripleLN extends ZigBeeDevice {
       });
     }
 
-    // measure_power switch
-    // applicationType : 589824 = 0x090000 Power in Watts
-    // Register measure_power capability
+    await super.onNodeInit({ zclNode });
+  }
 
-    // measure_power
-    if (this.hasCapability('measure_power')) {
-      // Define acPower parsing factor based on device settings
-      if (typeof this.getStoreValue('activePowerFactor') !== 'number') {
-        try {
-          const { acPowerMultiplier, acPowerDivisor } = await zclNode.endpoints[this.getClusterEndpoint(CLUSTER.ELECTRICAL_MEASUREMENT)].clusters[CLUSTER.ELECTRICAL_MEASUREMENT.NAME].readAttributes('acPowerMultiplier', 'acPowerDivisor');
-          this.activePowerFactor = acPowerMultiplier / acPowerDivisor;
-          this.setStoreValue('activePowerFactor', this.activePowerFactor).catch(this.error);
-          this.debug('SET activePowerFactor:', acPowerMultiplier, acPowerDivisor, this.activePowerFactor);
-        } catch (err) {
-          this.debug('Could not read electricaMeasurementCluster attributes `acPowerMultiplier`, `acPowerDivisor`:', err);
-          this.activePowerFactor = 0.1; // default value
-          this.debug('DEFAULT activePowerFactor:', this.activePowerFactor);
-        }
-      } else {
-        this.activePowerFactor = this.getStoreValue('activePowerFactor');
-        this.debug('READ activePowerFactor:', this.activePowerFactor);
+  async initAqaraMode() {
+    // Set Aqara Opple mode to 1 to force sending messages
+    if (this.isFirstInit()) {
+      try {
+        await this.zclNode.endpoints[1].clusters[AqaraManufacturerSpecificCluster.NAME].writeAttributes({ mode: 1 });
+      } catch (err) {
+        this.error('failed to write mode attributes', err);
       }
-
-      this.registerCapability('measure_power', CLUSTER.ELECTRICAL_MEASUREMENT, {
-        reportOpts: {
-          configureAttributeReporting: {
-            minInterval: 5, // Minimum interval of 5 seconds
-            maxInterval: 300, // Maximally every ~16 hours
-            minChange: 1 / this.activePowerFactor, // Report when value changed by 5
-          },
-        },
-        endpoint: this.getClusterEndpoint(CLUSTER.ELECTRICAL_MEASUREMENT),
-      });
-    }
-
-    if (this.hasCapability('meter_power')) {
-      // Define acPower parsing factor based on device settings
-      if (typeof this.getStoreValue('meteringFactor') !== 'number') {
-        try {
-          const { multiplier, divisor } = await zclNode.endpoints[this.getClusterEndpoint(CLUSTER.METERING)].clusters[CLUSTER.METERING.NAME].readAttributes('multiplier', 'divisor');
-          this.meteringFactor = multiplier / divisor;
-          this.setStoreValue('meteringFactor', this.meteringFactor).catch(this.error);
-          this.debug('SET meteringFactor:', multiplier, divisor, this.meteringFactor);
-        } catch (err) {
-          this.debug('could not read meteringCluster attributes `multiplier` and `divisor`:', err);
-          this.meteringFactor = 0.001; // default value
-          this.debug('DEFAULT meteringFactor:', this.meteringFactor);
-        }
-      } else {
-        this.meteringFactor = this.getStoreValue('meteringFactor');
-        this.debug('READ activePowerFactor:', this.meteringFactor);
-      }
-
-      this.registerCapability('meter_power', CLUSTER.METERING, {
-        reportOpts: {
-          configureAttributeReporting: {
-            minInterval: 300, // Minimum interval of 5 minutes
-            maxInterval: 3600, // Maximally every ~16 hours
-            minChange: 0.01 / this.meteringFactor, // Report when value changed by 5
-          },
-        },
-        endpoint: this.getClusterEndpoint(CLUSTER.METERING),
-      });
     }
   }
 

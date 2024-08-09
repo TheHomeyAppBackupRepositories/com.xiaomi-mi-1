@@ -10,14 +10,15 @@ const {
 } = require('zigbee-clusters');
 
 const AqaraManufacturerSpecificCluster = require('../../lib/AqaraManufacturerSpecificCluster');
+const AqaraMeteringDevice = require('../../lib/AqaraMeteringDevice');
 
 Cluster.addCluster(AqaraManufacturerSpecificCluster);
 
-class AqaraT1SwitchModuleNeutral extends ZigBeeDevice {
+class AqaraT1SwitchModuleNeutral extends AqaraMeteringDevice {
 
   async onNodeInit({ zclNode }) {
     // enable debugging
-    // this.enableDebug();
+    this.enableDebug();
 
     // Enables debug logging in zigbee-clusters
     // debug(true);
@@ -25,88 +26,39 @@ class AqaraT1SwitchModuleNeutral extends ZigBeeDevice {
     // print the node's info to the console
     // this.printNode();
 
-    try {
-      const { aqaraSwitchType, aqaraPowerOutageMemory } = await zclNode.endpoints[this.getClusterEndpoint(AqaraManufacturerSpecificCluster)].clusters[AqaraManufacturerSpecificCluster.NAME].readAttributes('aqaraSwitchType', 'aqaraPowerOutageMemory');
-      this.log('READattributes', aqaraSwitchType, aqaraPowerOutageMemory);
-      await this.setSettings({ external_switch_type: aqaraSwitchType, save_state: aqaraPowerOutageMemory });
-    } catch (err) {
-      this.log('could not read Attribute AqaraManufacturerSpecificCluster:', err);
-    }
+    this.powerMeasurementReporting = {};
+
+    this.initSettings();
 
     if (this.hasCapability('onoff')) {
       this.registerCapability('onoff', CLUSTER.ON_OFF, {
-        endpoint: 1,
-      });
-    }
-
-    // measure_power switch
-    // applicationType : 589824 = 0x090000 Power in Watts
-    // Register measure_power capability
-
-    // measure_power
-    if (this.hasCapability('measure_power')) {
-      // Define acPower parsing factor based on device settings
-      if (typeof this.getStoreValue('activePowerFactor') !== 'number') {
-        try {
-          const { acPowerMultiplier, acPowerDivisor } = await zclNode.endpoints[this.getClusterEndpoint(CLUSTER.ELECTRICAL_MEASUREMENT)].clusters[CLUSTER.ELECTRICAL_MEASUREMENT.NAME].readAttributes('acPowerMultiplier', 'acPowerDivisor');
-          this.activePowerFactor = acPowerMultiplier / acPowerDivisor;
-          this.setStoreValue('activePowerFactor', this.activePowerFactor).catch(this.error);
-          this.debug('SET activePowerFactor:', acPowerMultiplier, acPowerDivisor, this.activePowerFactor);
-        } catch (err) {
-          this.debug('Could not read electricaMeasurementCluster attributes `acPowerMultiplier`, `acPowerDivisor`:', err);
-          this.activePowerFactor = 0.1; // default value
-          this.debug('DEFAULT activePowerFactor:', this.activePowerFactor);
-        }
-      } else {
-        this.activePowerFactor = this.getStoreValue('activePowerFactor');
-        this.debug('READ activePowerFactor:', this.activePowerFactor);
-      }
-
-      this.registerCapability('measure_power', CLUSTER.ELECTRICAL_MEASUREMENT, {
         reportOpts: {
           configureAttributeReporting: {
-            minInterval: 5, // Minimum interval of 5 seconds
-            maxInterval: 300, // Maximally every ~16 hours
-            minChange: 1 / this.activePowerFactor, // Report when value changed by 5
+            minInterval: 0, // No minimum reporting interval
+            maxInterval: 43200, // Maximally every ~12 hours
+            minChange: 1, // Report when value changed by 5
           },
         },
-        endpoint: this.getClusterEndpoint(CLUSTER.ELECTRICAL_MEASUREMENT),
-      });
-    }
-
-    if (this.hasCapability('meter_power')) {
-      // Define acPower parsing factor based on device settings
-      if (typeof this.getStoreValue('meteringFactor') !== 'number') {
-        try {
-          const { multiplier, divisor } = await zclNode.endpoints[this.getClusterEndpoint(CLUSTER.METERING)].clusters[CLUSTER.METERING.NAME].readAttributes('multiplier', 'divisor');
-          this.meteringFactor = multiplier / divisor;
-          this.setStoreValue('meteringFactor', this.meteringFactor).catch(this.error);
-          this.debug('SET meteringFactor:', multiplier, divisor, this.meteringFactor);
-        } catch (err) {
-          this.debug('could not read meteringCluster attributes `multiplier` and `divisor`:', err);
-          this.meteringFactor = 0.001; // default value
-          this.debug('DEFAULT meteringFactor:', this.meteringFactor);
-        }
-      } else {
-        this.meteringFactor = this.getStoreValue('meteringFactor');
-        this.debug('READ activePowerFactor:', this.meteringFactor);
-      }
-
-      this.registerCapability('meter_power', CLUSTER.METERING, {
-        reportOpts: {
-          configureAttributeReporting: {
-            minInterval: 300, // Minimum interval of 5 minutes
-            maxInterval: 3600, // Maximally every ~16 hours
-            minChange: 0.01 / this.meteringFactor, // Report when value changed by 5
-          },
-        },
-        endpoint: this.getClusterEndpoint(CLUSTER.METERING),
+        endpoint: this.getClusterEndpoint(CLUSTER.ON_OFF),
       });
     }
 
     // Register the AttributeReportListener - Lifeline
     zclNode.endpoints[this.getClusterEndpoint(AqaraManufacturerSpecificCluster)].clusters[AqaraManufacturerSpecificCluster.NAME]
       .on('attr.aqaraLifeline', this.onAqaraLifelineAttributeReport.bind(this));
+
+    await super.onNodeInit({ zclNode });
+  }
+
+  async initSettings() {
+    try {
+      const { aqaraSwitchType, aqaraPowerOutageMemory } = await this.zclNode.endpoints[this.getClusterEndpoint(AqaraManufacturerSpecificCluster)].clusters[AqaraManufacturerSpecificCluster.NAME].readAttributes(['aqaraSwitchType', 'aqaraPowerOutageMemory']).catch(this.error);
+      this.log('READattributes', aqaraSwitchType, aqaraPowerOutageMemory);
+
+      await this.setSettings({ external_switch_type: aqaraSwitchType.toString(), save_state: aqaraPowerOutageMemory });
+    } catch (err) {
+      this.log('could not read Attribute AqaraManufacturerSpecificCluster:', err);
+    }
   }
 
   /**
@@ -117,14 +69,26 @@ class AqaraT1SwitchModuleNeutral extends ZigBeeDevice {
    * @param {{batteryLevel: number}} lifeline
    */
   onAqaraLifelineAttributeReport({
-    state,
+    state, consumption, power,
   } = {}) {
     this.log('lifeline attribute report', {
-      state,
+      state, consumption, power,
     });
 
     if (typeof state === 'number') {
+      this.log('handle report (cluster: aqaraLifeline, capability: onoff), parsed payload:', state === 1);
       this.setCapabilityValue('onoff', state === 1).catch(this.error);
+    }
+
+    if (typeof consumption === 'number') {
+      this.log('handle report (cluster: aqaraLifeline, capability: meter_power), parsed payload:', consumption);
+      this.setCapabilityValue('meter_power', consumption).catch(this.error);
+    }
+
+    if (typeof power === 'number') {
+      // this.log('handle report (cluster: aqaraLifeline, capability: measure_power), parsed payload:', power);
+      this.updatePowerMeasurement(power, 'aqaraLifeline');
+      // this.setCapabilityValue('measure_power', power).catch(this.error);
     }
   }
 

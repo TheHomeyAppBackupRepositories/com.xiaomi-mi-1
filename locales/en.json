@@ -3,6 +3,8 @@
 	"Key Pressed 2 times": "Pressed 2x",
 	"Key Pressed 3 times": "Pressed 3x",
 	"Key Pressed 4 times": "Pressed 4x",
+	"Key Pressed 5 times": "Pressed 5x",
+	"Key Pressed many times": "Pressed many times (≥ 6x)",
 	"Key Held Down": "Held Down",
 	"Key Released": "Released",
 	"Shaken": "Shaken",
